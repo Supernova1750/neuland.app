@@ -38,10 +38,14 @@ import InstallPrompt from '../components/cards/InstallPrompt'
 import MobilityCard from '../components/cards/MobilityCard'
 import TimetableCard from '../components/cards/TimetableCard'
 
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 import styles from '../styles/Home.module.css'
+import TranslateDagerous from '../components/TranslateDangerous'
 
 const CTF_URL = process.env.NEXT_PUBLIC_CTF_URL
-const ALL_THEMES = [
+const  ALL_THEMES = [
   { name: 'Automatisch', style: 'default' },
   { name: 'Hell', style: 'light' },
   { name: 'Dunkel', style: 'dark' },
@@ -117,7 +121,7 @@ const ALL_DASHBOARD_CARDS = [
   },
   {
     key: 'library',
-    label: 'Bibliothek',
+    label: "Bibliothek",
     default: [PLATFORM_DESKTOP, PLATFORM_MOBILE, USER_STUDENT],
     card: () => (
       <BaseCard
@@ -171,6 +175,7 @@ const ALL_DASHBOARD_CARDS = [
 
 export default function Home () {
   const router = useRouter()
+  const { t } = useTranslation()
 
   // page state
   const [shownDashboardEntries, setShownDashboardEntries] = useState([])
@@ -273,7 +278,7 @@ export default function Home () {
     <AppContainer>
       <AppNavbar title="neuland.app" showBack={false}>
         <AppNavbar.Button onClick={() => setShowThemeModal(true)}>
-          <FontAwesomeIcon title="Personalisieren" icon={faPen} fixedWidth />
+          <FontAwesomeIcon title={ t('index.personalize.title') } icon={faPen} fixedWidth />
         </AppNavbar.Button>
         <AppNavbar.Overflow>
           {showDebug && (
@@ -294,7 +299,7 @@ export default function Home () {
         <div className={styles.cardDeck}>
           <Modal show={!!showThemeModal} dialogClassName={styles.themeModal} onHide={() => setShowThemeModal(false)}>
             <Modal.Header closeButton>
-              <Modal.Title>Personalisierung</Modal.Title>
+              <Modal.Title>{ t('index.personalize.title') }</Modal.Title>
             </Modal.Header>
             <Modal.Body ref={themeModalBody}>
               <h3 className={styles.themeHeader}>Design</h3>
@@ -313,8 +318,7 @@ export default function Home () {
                 ))}
               </Form>
               <p>
-                Um das <i>Hackerman</i>-Design freizuschalten, musst du mindestens vier Aufgaben unseres <a href={CTF_URL} target="_blank" rel="noreferrer">Übungs-CTFs</a> lösen.
-                Wenn du so weit bist, kannst du es <Link href="/become-hackerman">hier</Link> freischalten.
+                <TranslateDagerous i18nKey="index.personalize.themenotice" />
               </p>
 
               <h3 className={styles.themeHeader}>Dashboard</h3>
@@ -376,4 +380,13 @@ export default function Home () {
       <AppTabbar />
     </AppContainer>
   )
+}
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+      // Will be passed to the page component as props
+    },
+  };
 }

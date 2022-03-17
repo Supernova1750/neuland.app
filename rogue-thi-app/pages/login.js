@@ -12,6 +12,12 @@ import { createSession } from '../lib/backend/thi-session-handler'
 
 import styles from '../styles/Login.module.css'
 
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next'
+import TranslateDagerous from '../components/TranslateDangerous'
+import Link from 'next/link'
+import SwitchLanguge from '../components/SwitchLanguage'
+
 const ORIGINAL_ERROR_WRONG_CREDENTIALS = 'Wrong credentials'
 const FRIENDLY_ERROR_WRONG_CREDENTIALS = 'Deine Zugangsdaten sind ungültig.'
 
@@ -25,6 +31,8 @@ export default function Login () {
   const [password, setPassword] = useState('')
   const [saveCredentials, setSaveCredentials] = useState(false)
   const [failure, setFailure] = useState(false)
+
+  const { t } = useTranslation()
 
   async function attemptLogin (e) {
     try {
@@ -42,7 +50,7 @@ export default function Login () {
   return (
     <AppContainer>
       <AppNavbar title="neuland.app" showBack={false} />
-
+      <SwitchLanguge/>
       <AppBody>
         <div className={styles.container}>
           <Form className={styles.main} onSubmit={e => attemptLogin(e)} autoComplete="on">
@@ -53,7 +61,7 @@ export default function Login () {
             }
 
             <Form.Group>
-              <Form.Label>THI-Benutzername</Form.Label>
+              <Form.Label>{ t('login.form.username') }</Form.Label>
               <Form.Control
                 type="text"
                 autoComplete="username"
@@ -66,7 +74,7 @@ export default function Login () {
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>Passwort</Form.Label>
+              <Form.Label>{ t('login.form.password') }</Form.Label>
               <Form.Control
                 type="password"
                 autoComplete="current-password"
@@ -81,48 +89,52 @@ export default function Login () {
               <Form.Check
                 type="checkbox"
                 id="stay-logged-in"
-                label="Eingeloggt bleiben"
+                label={ t('login.form.stay-logged-in') }
                 onChange={e => setSaveCredentials(e.target.checked)}
               />
             </Form.Group>
 
             <Form.Group>
               <Button type="submit" className={styles.loginButton}>
-                Einloggen
+                { t('login.form.log-in') }
               </Button>
             </Form.Group>
           </Form>
 
           <div className={styles.disclaimer}>
-            <h6>Wo bin ich hier?</h6>
+            <h6>{ t('login.description.intro.title') }</h6>
             <p>
-              Dies ist eine inoffizielle Alternative zur THI-App.
-              Sie wird von Studierenden für Studierende entwickelt und ist <strong>kein</strong> offizielles Angebot der THI.
+              <TranslateDagerous i18nKey="login.description.intro.body"/>
             </p>
-            <h6>Wer hat das entwickelt?</h6>
+            <h6>{ t('login.description.developers.title') }</h6>
             <p>
-              Die App wird von Neuland Ingolstadt, dem studentischen Verein für alle Informatik-Begeisterten, entwickelt.
-              Mehr Informationen findest du auf unserer Webseite unter{' '}
-              <a href="https://neuland-ingolstadt.de" target="_blank" rel="noreferrer">neuland-ingolstadt.de</a>.
+              <TranslateDagerous i18nKey="login.description.developers.body"/>
             </p>
-            <h6>Sind meine Daten sicher?</h6>
+            <h6>{ t('login.description.privacy.title')}</h6>
             <p>
-              <strong>Ja. </strong>
-              Deine Daten werden direkt auf deinem Gerät verschlüsselt, in verschlüsselter Form über unseren Proxy an die THI übermittelt
-              und erst dort wieder entschlüsselt.
-              Nur die THI hat Zugriff auf deine Zugangsdaten und deine persönlichen Daten.
+              <TranslateDagerous i18nKey="login.description.privacy.body"/>
+
             </p>
             <p>
-              <a href={`${GIT_URL}/blob/master/docs/data-security-de.md`}>Hier findest du weitere Informationen zur Sicherheit.</a>
+              <a href={`${GIT_URL}/blob/master/docs/data-security-de.md`}>{ t('login.links.data-security') }</a>
             </p>
             <p>
-              <a href={GIT_URL} target="_blank" rel="noreferrer">Quellcode auf GitHub</a>
+              <a href={GIT_URL} target="_blank" rel="noreferrer">{ t('login.links.github') }</a>
               <> &ndash; </>
-              <a href={IMPRINT_URL} target="_blank" rel="noreferrer">Impressum und Datenschutz</a>
+              <a href={IMPRINT_URL} target="_blank" rel="noreferrer">{ t('login.links.imprint') }</a>
             </p>
           </div>
         </div>
       </AppBody>
     </AppContainer>
   )
+}
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+      // Will be passed to the page component as props
+    },
+  };
 }

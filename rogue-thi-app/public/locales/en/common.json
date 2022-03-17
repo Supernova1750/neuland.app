@@ -1,0 +1,35 @@
+{
+    "login": {
+        "form": {
+            "username": "THI-Username",
+            "password": "Password",
+            "stay-logged-in": "Stay logged in",
+            "log-in": "Log in"
+        },
+        "description": {
+            "intro": {
+                "title": "What is this place?",
+                "body":"This App is an unoffical alternertive to the THI-App. It's created by and for Students and is <b>not</b> a official THI product."
+            },
+            "developers": {
+                "title":"Who created it?",
+                "body":"The App is being developed by Neuland Ingolstadt e.V., a student club for all people interested in computer science. You can find out more about it on our website <a href=\"https://neuland-ingolstadt.de\" target=\"_blank\" rel=\"noreferrer\">neuland-ingolstadt.de</a>."
+            },
+            "privacy": {
+                "title": "Is my data save?",
+                "body": "<b>Yes.</b> Your information is encrypted directly on your device and then send to the THI-Servers via our proxy. Only then is it decrypted. Only the University has access to your login data."
+            }
+        },
+        "links": {
+            "data-security": "Find out more about data security.",
+            "github":"Source code on GitHub",
+            "imprint": "Imprint and privacy policy"
+        }
+    },
+    "index" : {
+        "personalize": {
+            "title": "Personalization",
+            "themenotice": "To unlock the <i>Hackerman</i>-Design, complete at least four <a href=\"https://neuland-ingolstadt.de/ctf-training/\" target=\"_blank\" rel=\"noreferrer\">CTF-challenges</a>. To unlock them, visit <a href=\"/become-hackerman\">here</a>." 
+        }
+    }
+}

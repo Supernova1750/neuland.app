@@ -1,0 +1,35 @@
+{
+    "login": {
+        "form": {
+            "username": "THI-Benutzername",
+            "password": "Passwort",
+            "stay-logged-in": "Eingeloggt bleiben",
+            "log-in": "Einloggen"
+        },
+        "description": {
+            "intro": {
+                "title": "Wo bin ich hier?",
+                "body":"Dies ist eine inoffizielle Alternative zur THI-App. Sie wird von Studierenden für Studierende entwickelt und ist <b>kein</b> offizielles Angebot der THI."
+            },
+            "developers": {
+                "title":"Wer hat das entwickelt?",
+                "body":"Die App wird von Neuland Ingolstadt, dem studentischen Verein für alle Informatik-Begeisterten, entwickelt. Mehr Informationen findest du auf unserer Webseite unter <a href=\"https://neuland-ingolstadt.de\" target=\"_blank\" rel=\"noreferrer\">neuland-ingolstadt.de</a>."
+            },
+            "privacy": {
+                "title": "Sind meine Daten sicher?",
+                "body": "<strong>Ja.</strong> Deine Daten werden direkt auf deinem Gerät verschlüsselt, in verschlüsselter Form über unseren Proxy an die THI übermittelt und erst dort wieder entschlüsselt. Nur die THI hat Zugriff auf deine Zugangsdaten und deine persönlichen Daten."
+            }
+        },
+        "links": {
+            "data-security": "Hier findest du weitere Informationen zur Sicherheit.",
+            "github":"Quellcode auf GitHub",
+            "imprint": "Impressum und Datenschutz"
+        }
+    },
+    "index" : {
+        "personalize": {
+            "title": "Personalisierung",
+            "themenotice": "Um das <i>Hackerman</i>-Design freizuschalten, musst du mindestens vier Aufgaben unseres <a href=\"https://neuland-ingolstadt.de/ctf-training/\" target=\"_blank\" rel=\"noreferrer\">Übungs-CTFs</a> lösen. Wenn du so weit bist, kannst du es <Link href=\"/become-hackerman\">hier</Link> freischalten." 
+        }
+    }
+}

@@ -8,6 +8,7 @@ import TheMatrixAnimation from './../components/TheMatrixAnimation'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { config } from '@fortawesome/fontawesome-svg-core'
+import { appWithTranslation } from 'next-i18next'
 
 import '../styles/globals.css'
 
@@ -119,4 +120,4 @@ MyApp.getInitialProps = async (appContext) => {
   }
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)
