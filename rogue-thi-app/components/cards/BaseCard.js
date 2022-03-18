@@ -8,8 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 import styles from '../../styles/Home.module.css'
+import { useTranslation } from 'next-i18next'
 
-export default function BaseCard ({ link, icon, title, className, children }) {
+export default function BaseCard ({ link, icon, i18nKey, title, className, children }) {
+  const { t } = useTranslation()
   return (
     // eslint-disable-next-line @next/next/link-passhref
     <Link href={link}>
@@ -18,7 +20,7 @@ export default function BaseCard ({ link, icon, title, className, children }) {
           <Card.Title>
             <FontAwesomeIcon icon={icon} fixedWidth />
             {' '}
-            {title}
+            { title ||  t('homecards.' + i18nKey + '.title') }
             <Button variant="link" className={styles.cardButton}>
               <FontAwesomeIcon icon={faChevronRight} />
             </Button>

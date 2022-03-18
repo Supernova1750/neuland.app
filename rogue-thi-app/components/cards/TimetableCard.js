@@ -34,7 +34,7 @@ export default function TimetableCard () {
   return (
     <BaseCard
       icon={faCalendarMinus}
-      title="Stundenplan"
+      i18nKey="timetable"
       link="/timetable"
     >
       <ReactPlaceholder type="text" rows={5} ready={timetable || timetableError}>

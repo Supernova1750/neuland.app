@@ -43,7 +43,7 @@ export default function CalendarCard () {
   return (
     <BaseCard
       icon={faCalendarAlt}
-      title="Termine"
+      i18nKey="calendar"
       link="/calendar"
     >
       <ListGroup variant="flush">

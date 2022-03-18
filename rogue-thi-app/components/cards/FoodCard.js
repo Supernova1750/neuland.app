@@ -6,11 +6,14 @@ import { faUtensils } from '@fortawesome/free-solid-svg-icons'
 import BaseCard from './BaseCard'
 import { formatISODate } from '../../lib/date-utils'
 import { loadFoodEntries } from '../../lib/backend-utils/food-utils'
+import { useTranslation } from 'next-i18next'
 
 export default function FoodCard () {
   const [foodEntries, setFoodEntries] = useState(null)
-  const [foodCardTitle, setFoodCardTitle] = useState('Essen')
+  const [foodCardTitle, setFoodCardTitle] = useState('food')
   const [foodError, setFoodError] = useState(null)
+  const { t } = useTranslation()
+
 
   useEffect(() => {
     async function load () {
@@ -18,11 +21,11 @@ export default function FoodCard () {
         ? JSON.parse(localStorage.selectedRestaurants)
         : ['mensa']
       if (restaurants.length === 1 && restaurants[0] === 'mensa') {
-        setFoodCardTitle('Mensa')
+        setFoodCardTitle('cafeteria')
       } else if (restaurants.length === 1 && restaurants[0] === 'reimanns') {
-        setFoodCardTitle('Reimanns')
+        setFoodCardTitle('reimanns')
       } else {
-        setFoodCardTitle('Essen')
+        setFoodCardTitle('food')
       }
 
       const today = formatISODate(new Date())
@@ -34,7 +37,7 @@ export default function FoodCard () {
         } else if (todayEntries.length > 2) {
           setFoodEntries([
             todayEntries[0].name,
-            `und ${todayEntries.length - 1} weitere Gerichte`
+            t('homecards.food.remainingtext', {"remaining": todayEntries.length - 1})
           ])
         } else {
           setFoodEntries(todayEntries.map(x => x.name))
@@ -50,7 +53,7 @@ export default function FoodCard () {
   return (
     <BaseCard
       icon={faUtensils}
-      title={foodCardTitle}
+      title={ t('homecards.food.title-' + foodCardTitle) }
       link="/food"
     >
       <ReactPlaceholder type="text" rows={5} ready={foodEntries || foodError}>
