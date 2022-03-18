@@ -14,7 +14,7 @@ import styles from '../styles/Login.module.css'
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next'
-import TranslateDagerous from '../components/TranslateDangerous'
+import TranslateDangerous from '../components/TranslateDangerous'
 import Link from 'next/link'
 import SwitchLanguge from '../components/SwitchLanguage'
 
@@ -104,15 +104,15 @@ export default function Login () {
           <div className={styles.disclaimer}>
             <h6>{ t('login.description.intro.title') }</h6>
             <p>
-              <TranslateDagerous i18nKey="login.description.intro.body"/>
+              <TranslateDangerous i18nKey="login.description.intro.body"/>
             </p>
             <h6>{ t('login.description.developers.title') }</h6>
             <p>
-              <TranslateDagerous i18nKey="login.description.developers.body"/>
+              <TranslateDangerous i18nKey="login.description.developers.body"/>
             </p>
             <h6>{ t('login.description.privacy.title')}</h6>
             <p>
-              <TranslateDagerous i18nKey="login.description.privacy.body"/>
+              <TranslateDangerous i18nKey="login.description.privacy.body"/>
 
             </p>
             <p>
