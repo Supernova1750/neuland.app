@@ -42,17 +42,17 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import styles from '../styles/Home.module.css'
-import TranslateDagerous from '../components/TranslateDangerous'
+import TranslateDangerous from '../components/TranslateDangerous'
 
 const CTF_URL = process.env.NEXT_PUBLIC_CTF_URL
 const  ALL_THEMES = [
-  { name: 'Automatisch', style: 'default' },
-  { name: 'Hell', style: 'light' },
-  { name: 'Dunkel', style: 'dark' },
-  { name: 'Barbie & Ken', style: 'barbie' },
-  { name: 'Retro', style: 'retro' },
-  { name: 'Windows 95', style: '95' },
-  { name: 'Hackerman', style: 'hacker', requiresToken: true }
+  { style: 'default' },
+  { style: 'light' },
+  { style: 'dark' },
+  { style: 'barbie' },
+  { style: 'retro' },
+  { style: '95' },
+  { style: 'hacker', requiresToken: true }
 ]
 
 const PLATFORM_DESKTOP = 'desktop'
@@ -62,7 +62,6 @@ const USER_EMPLOYEE = 'employee'
 const ALL_DASHBOARD_CARDS = [
   {
     key: 'install',
-    label: 'Installation',
     default: [PLATFORM_MOBILE, USER_STUDENT, USER_EMPLOYEE],
     card: hidePromptCard => (
       <InstallPrompt
@@ -73,7 +72,6 @@ const ALL_DASHBOARD_CARDS = [
   },
   {
     key: 'discord',
-    label: 'Discord-Server',
     default: [],
     card: hidePromptCard => (
       <DiscordPrompt
@@ -84,89 +82,80 @@ const ALL_DASHBOARD_CARDS = [
   },
   {
     key: 'timetable',
-    label: 'Stundenplan',
     default: [PLATFORM_DESKTOP, USER_STUDENT, USER_EMPLOYEE],
     card: () => <TimetableCard key="timetable" />
   },
   {
-    key: 'mensa',
-    label: 'Essen',
+    key: 'food',
     default: [PLATFORM_DESKTOP, USER_STUDENT, USER_EMPLOYEE],
-    card: () => <FoodCard key="mensa" />
+    card: () => <FoodCard key="food" />
   },
   {
     key: 'mobility',
-    label: 'Mobilität',
     default: [PLATFORM_DESKTOP, PLATFORM_MOBILE, USER_STUDENT, USER_EMPLOYEE],
     card: () => <MobilityCard key="mobility" />
   },
   {
     key: 'calendar',
-    label: 'Termine',
     default: [PLATFORM_DESKTOP, PLATFORM_MOBILE, USER_STUDENT, USER_EMPLOYEE],
     card: () => <CalendarCard key="calendar" />
   },
   {
     key: 'rooms',
-    label: 'Raumplan',
     default: [PLATFORM_DESKTOP, USER_STUDENT, USER_EMPLOYEE],
     card: () => (
       <BaseCard
         key="rooms"
         icon={faDoorOpen}
-        title="Räume"
+        i18nKey="rooms"
         link="/rooms"
         />
     )
   },
   {
     key: 'library',
-    label: "Bibliothek",
     default: [PLATFORM_DESKTOP, PLATFORM_MOBILE, USER_STUDENT],
     card: () => (
       <BaseCard
         key="library"
         icon={faBook}
-        title="Bibliothek"
+        i18nKey="library"
         link="/library"
         />
     )
   },
   {
     key: 'grades',
-    label: 'Noten & Fächer',
     default: [PLATFORM_DESKTOP, PLATFORM_MOBILE, USER_STUDENT],
     card: () => (
       <BaseCard
         key="grades"
         icon={faScroll}
-        title="Noten & Fächer"
+        i18nKey="grades"
         link="/grades"
         />
     )
   },
   {
     key: 'personal',
-    label: 'Persönliche Daten',
     default: [PLATFORM_DESKTOP, PLATFORM_MOBILE, USER_STUDENT],
     card: () => (
       <BaseCard
         key="personal"
         icon={faUser}
-        title="Persönliche Daten"
+        i18nKey="personal"
         link="/personal"
         />
     )
   },
   {
     key: 'lecturers',
-    label: 'Dozenten',
     default: [PLATFORM_DESKTOP, PLATFORM_MOBILE, USER_STUDENT, USER_EMPLOYEE],
     card: () => (
       <BaseCard
         key="lecturers"
         icon={faUserGraduate}
-        title="Dozenten"
+        i18nKey="lecturers"
         link="/lecturers"
         />
     )
@@ -283,14 +272,14 @@ export default function Home () {
         <AppNavbar.Overflow>
           {showDebug && (
             <Dropdown.Item variant="link" href="/debug">
-              API Spielwiese
+              { t('index.dropdown.apiplayground') }
             </Dropdown.Item>
           )}
           <Dropdown.Item variant="link" href="/imprint">
-            Impressum & Datenschutz
+            { t('index.dropdown.imprint') }
           </Dropdown.Item>
           <Dropdown.Item variant="link" onClick={() => forgetSession(router)}>
-            Ausloggen
+            { t('index.dropdown.logout')}
           </Dropdown.Item>
         </AppNavbar.Overflow>
       </AppNavbar>
@@ -302,7 +291,9 @@ export default function Home () {
               <Modal.Title>{ t('index.personalize.title') }</Modal.Title>
             </Modal.Header>
             <Modal.Body ref={themeModalBody}>
-              <h3 className={styles.themeHeader}>Design</h3>
+              <h3 className={styles.themeHeader}>{ t('index.personalize.language.title') }</h3>
+              ADD FUNCTIALITLY
+              <h3 className={styles.themeHeader}>{ t('index.personalize.themes.title') }</h3>
               <Form>
                 {ALL_THEMES.map((availableTheme, i) => (
                   <Button
@@ -313,33 +304,33 @@ export default function Home () {
                     onClick={() => changeTheme(availableTheme.style)}
                     disabled={availableTheme.requiresToken && unlockedThemes.indexOf(availableTheme.style) === -1}
                   >
-                    {availableTheme.name}
+                    { t('index.personalize.themes.' + availableTheme.style) }
                   </Button>
                 ))}
               </Form>
               <p>
-                <TranslateDagerous i18nKey="index.personalize.themenotice" />
+                <TranslateDangerous i18nKey="index.personalize.themes.notice" />
               </p>
 
-              <h3 className={styles.themeHeader}>Dashboard</h3>
+              <h3 className={styles.themeHeader}>{ t('index.personalize.dashboard.title') }</h3>
               <p>
-                Hier kannst du die Reihenfolge der im Dashboard angezeigten Einträge verändern.
+                <TranslateDangerous i18nKey="index.personalize.dashboard.notice" />
               </p>
               <ListGroup>
                 {shownDashboardEntries.map((entry, i) => (
                   <ListGroup.Item key={i} className={styles.personalizeItem}>
                     <div className={styles.personalizeLabel}>
-                      {entry.label}
+                      { t('homecards.' + entry.key + '.title') }
                     </div>
                     <div className={styles.personalizeButtons}>
                       <Button variant="text" onClick={() => moveDashboardEntry(i, -1)}>
-                        <FontAwesomeIcon title="Nach oben" icon={faChevronUp} fixedWidth />
+                        <FontAwesomeIcon title={ t('index.personalize.dashboard.up')} icon={faChevronUp} fixedWidth />
                       </Button>
                       <Button variant="text" onClick={() => moveDashboardEntry(i, +1)}>
-                        <FontAwesomeIcon title="Nach unten" icon={faChevronDown} fixedWidth />
+                        <FontAwesomeIcon title={ t('index.personalize.dashboard.down')} icon={faChevronDown} fixedWidth />
                       </Button>
                       <Button variant="text" onClick={() => hideDashboardEntry(entry.key)}>
-                        <FontAwesomeIcon title="Entfernen" icon={faTrash} fixedWidth />
+                        <FontAwesomeIcon title={ t('index.personalize.dashboard.remove')} icon={faTrash} fixedWidth />
                       </Button>
                     </div>
                   </ListGroup.Item>
@@ -347,16 +338,16 @@ export default function Home () {
               </ListGroup>
               <br />
 
-              <h4>Ausgeblendete Elemente</h4>
+              <h4>{ t('index.personalize.dashboard.title-hidden') }</h4>
               <ListGroup>
                 {hiddenDashboardEntries.map((entry, i) => (
                   <ListGroup.Item key={i} className={styles.personalizeItem}>
                     <div className={styles.personalizeLabel}>
-                      {entry.label}
+                      { t('homecards.' + entry.key) }
                     </div>
                     <div className={styles.personalizeButtons}>
                       <Button variant="text" onClick={() => bringBackDashboardEntry(i)}>
-                        <FontAwesomeIcon title="Wiederherstellen" icon={faTrashRestore} fixedWidth />
+                        <FontAwesomeIcon title={ t('index.personalize.dashboard.restore') } icon={faTrashRestore} fixedWidth />
                       </Button>
                     </div>
                   </ListGroup.Item>
@@ -368,7 +359,7 @@ export default function Home () {
                 variant="secondary"
                 onClick={() => changeDashboardEntries(ALL_DASHBOARD_CARDS, [])}
               >
-                Reihenfolge zurücksetzen
+                { t('index.personalize.dashboard.reset') }
               </Button>
             </Modal.Body>
           </Modal>
