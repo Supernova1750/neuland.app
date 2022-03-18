@@ -29,7 +29,78 @@
     "index" : {
         "personalize": {
             "title": "Personalization",
-            "themenotice": "To unlock the <i>Hackerman</i>-Design, complete at least four <a href=\"https://neuland-ingolstadt.de/ctf-training/\" target=\"_blank\" rel=\"noreferrer\">CTF-challenges</a>. To unlock them, visit <a href=\"/become-hackerman\">here</a>." 
+            "language": {
+                "title": "Change Language"
+            },
+            "themes": {
+                "title": "Design",
+                "notice": "To unlock the <i>Hackerman</i>-Design, complete at least four <a href=\"https://neuland-ingolstadt.de/ctf-training/\" target=\"_blank\" rel=\"noreferrer\">CTF-challenges</a>. To unlock them, visit <a href=\"/become-hackerman\">here</a>.",
+                "default": "Automatic",
+                "light": "Light",
+                "dark": "Dark",
+                "barbie": "Barbie & Ken",
+                "retro": "Retro",
+                "95": "Windows 95",
+                "hacker": "Hackerman"
+            },
+            "dashboard": {
+                "title": "Dashboard",
+                "title-hidden": "Ausgeblendete Elemente",
+                "notice": "Here you can change the order of the entries shown on the dashboard.",
+                "up": "Move up",
+                "down": "Move down",
+                "remove": "Remove",
+                "restore": "Restore",
+                "reset": "Reset order"
+            }
+        },
+        "dropdown": {
+            "apiplayground": "API Playground",
+            "imprint": "Imprint & privacy notice",
+            "logout": "Log out"
+        }
+    },
+    "homecards": {
+        "install": {
+            "title": "Installation",
+            "subtext": "Do you want to add this App to your smartphone?",
+            "ios": "In Safari press on <b>Share</b> and then on <b>Add to Home Screen</b>.",
+            "android": "On Chrome open the <b>Menu</b> and click on <b>Add to homescreen</b>.",
+            "close": "Remove"
+        },
+        "discord": {
+            "title": "Discord-Server"
+        },
+        "timetable": {
+            "title": "Timetable"
+        },
+        "food": {            
+            "title": "Food",
+            "title-food": "Food",
+            "title-cafeteria": "Cafeteria",
+            "title-reimanns": "Reimanns",
+            "remainingtext": "and {{ remaining }} more options"
+        },
+        "mobility": {
+            "title": "Mobility"
+        },
+        "calendar": {
+            "title": "Calendar"
+        },
+        "rooms": {
+            "title": "Floor plan"
+        },
+        "library": {
+            "title": "Library"
+        },
+        "grades": {
+            "title": "Grades & Classes"
+        },
+        "personal": {
+            "title": "Personal Info"
+        },
+        "lecturers": {
+            "title": "Professors"
         }
     }
 }

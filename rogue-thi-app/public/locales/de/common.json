@@ -29,7 +29,78 @@
     "index" : {
         "personalize": {
             "title": "Personalisierung",
-            "themenotice": "Um das <i>Hackerman</i>-Design freizuschalten, musst du mindestens vier Aufgaben unseres <a href=\"https://neuland-ingolstadt.de/ctf-training/\" target=\"_blank\" rel=\"noreferrer\">Übungs-CTFs</a> lösen. Wenn du so weit bist, kannst du es <Link href=\"/become-hackerman\">hier</Link> freischalten." 
+            "language": {
+                "title": "Sprache ändern"
+            },
+            "themes": {
+                "title": "Design",
+                "notice": "Um das <i>Hackerman</i>-Design freizuschalten, musst du mindestens vier Aufgaben unseres <a href=\"https://neuland-ingolstadt.de/ctf-training/\" target=\"_blank\" rel=\"noreferrer\">Übungs-CTFs</a> lösen. Wenn du so weit bist, kannst du es <Link href=\"/become-hackerman\">hier</Link> freischalten.", 
+                "default": "Automatisch",
+                "light": "Hell",
+                "dark": "Dunkel",
+                "barbie": "Barbie & Ken",
+                "retro": "Retro",
+                "95": "Windows 95",
+                "hacker": "Hackerman"
+            },
+            "dashboard": {
+                "title": "Dashboard",
+                "title-hidden": "Hidden elements",
+                "notice": "Here you can change the order of the entries shown on the dashboard.",
+                "up": "Nach oben",
+                "down": "Nach unten",
+                "remove": "Entfernen",
+                "restore": "Wiederherstellen",
+                "reset": "Reihenfolge zurücksetzen"
+            }
+        },
+        "dropdown": {
+            "apiplayground": "API Spielwiese",
+            "imprint": "Impressum & Datenschutz",
+            "logout": "Ausloggen"
+        }
+    },
+    "homecards": {
+        "install": {
+            "title": "Installation",
+            "subtext": "Möchtest du diese App auf deinem Smartphone installieren?",
+            "ios": "Drücke in Safari auf <b>Teilen</b> und dann auf <b>Zum Home-Bildschirm</b>.",
+            "android": "Öffne in Chrome das <b>Menü</b> und drücke dann auf <b>Zum Startbildschirm zufügen</b>.",
+            "close": "Schließen"
+        },
+        "discord": {
+            "title": "Discord-Server"
+        },
+        "timetable": {
+            "title": "Stundenplan"
+        },
+        "food": {
+            "title": "Essen",
+            "title-food": "Food",
+            "title-cafeteria": "Mensa",
+            "title-reimanns": "Reimanns",
+            "remainingtext": "und {{ remaining }} weitere Gerichte"
+        },
+        "mobility": {
+            "title": "Mobilität"
+        },
+        "calendar": {
+            "title": "Termine"
+        },
+        "rooms": {
+            "title": "Raumplan"
+        },
+        "library": {
+            "title": "Bibliothek"
+        },
+        "grades": {
+            "title": "Noten & Fächer"
+        },
+        "personal": {
+            "title": "Persönliche Daten"
+        },
+        "lecturers": {
+            "title": "Dozent:innen"
         }
     }
 }
