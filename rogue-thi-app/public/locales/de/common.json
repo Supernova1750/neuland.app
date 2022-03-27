@@ -91,7 +91,9 @@
             "loaderror": "Fehler beim Abruf des Speiseplans.<br />Irgendetwas scheint kaputt zu sein. :("
         },
         "mobility": {
-            "title": "Mobilität"
+            "title": "Mobilität",
+            "empty": "Keine Elemente.",
+            "loaderror": "Fehler beim Abruf."
         },
         "calendar": {
             "title": "Termine"

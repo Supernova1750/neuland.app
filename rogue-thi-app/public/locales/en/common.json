@@ -91,7 +91,9 @@
             "loaderror": "Error loading the meal plan.<br />Something seems to be broken. :("
         },
         "mobility": {
-            "title": "Mobility"
+            "title": "Mobility",
+            "empty": "No elements.",
+            "loaderror": "Error while fetching data."
         },
         "calendar": {
             "title": "Calendar"

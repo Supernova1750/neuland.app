@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
 import ReactPlaceholder from 'react-placeholder'
+import TranslateDangerous from '../TranslateDangerous'
+import { useTranslation } from 'next-i18next'
 
 import {
   faBus,
@@ -33,12 +35,13 @@ export default function MobilityCard () {
   const [mobility, setMobility] = useState(null)
   const [mobilityError, setMobilityError] = useState(null)
   const [mobilitySettings, setMobilitySettings] = useState(null)
+  const { t } = useTranslation()
 
   const mobilityIcon = useMemo(() => {
     return mobilitySettings ? MOBILITY_ICONS[mobilitySettings.kind] : faBus
   }, [mobilitySettings])
   const mobilityLabel = useMemo(() => {
-    return mobilitySettings ? getMobilityLabel(mobilitySettings.kind, mobilitySettings.station) : 'Mobilität'
+    return mobilitySettings ? getMobilityLabel(mobilitySettings.kind, mobilitySettings.station) : t('homecards.mobility.title')
   }, [mobilitySettings])
 
   useEffect(() => {
@@ -55,7 +58,7 @@ export default function MobilityCard () {
         setMobility(await getMobilityEntries(mobilitySettings.kind, mobilitySettings.station))
       } catch (e) {
         console.error(e)
-        setMobilityError('Fehler beim Abruf.')
+        setMobilityError('Error while fetching data.')
       }
     }
     load()
@@ -75,11 +78,11 @@ export default function MobilityCard () {
           )}
           {mobility && mobility.length === 0 &&
             <ListGroup.Item>
-              Keine Elemente.
+              <TranslateDangerous i18nKey="homecards.mobility.empty"/>
             </ListGroup.Item>}
           {mobilityError &&
             <ListGroup.Item>
-              Fehler beim Abruf.
+              <TranslateDangerous i18nKey="homecards.mobility.loaderror"/>
             </ListGroup.Item>}
         </ListGroup>
       </ReactPlaceholder>
