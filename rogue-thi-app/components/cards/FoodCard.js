@@ -7,6 +7,7 @@ import BaseCard from './BaseCard'
 import { formatISODate } from '../../lib/date-utils'
 import { loadFoodEntries } from '../../lib/backend-utils/food-utils'
 import { useTranslation } from 'next-i18next'
+import TranslateDangerous from '../TranslateDangerous'
 
 export default function FoodCard () {
   const [foodEntries, setFoodEntries] = useState(null)
@@ -64,12 +65,11 @@ export default function FoodCard () {
           )}
           {foodEntries && foodEntries.length === 0 &&
             <ListGroup.Item>
-              Der heutige Speiseplan ist leer.
+              <TranslateDangerous i18nKey="homecards.food.empty"/>
             </ListGroup.Item>}
           {foodError &&
             <ListGroup.Item>
-              Fehler beim Abruf des Speiseplans.<br />
-              Irgendetwas scheint kaputt zu sein. :(
+              <TranslateDangerous i18nKey="homecards.food.loaderror"/>
             </ListGroup.Item>}
         </ListGroup>
       </ReactPlaceholder>
