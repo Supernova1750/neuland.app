@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
@@ -19,6 +20,7 @@ export default function DiscordPrompt ({ onHide }) {
   const router = useRouter()
   const [faculty, setFaculty] = useState(null)
   const [discordUrl, setDiscordUrl] = useState(null)
+  const { t } = useTranslation()
 
   useEffect(() => {
     async function load () {
@@ -53,15 +55,15 @@ export default function DiscordPrompt ({ onHide }) {
         <Card.Title>
           <FontAwesomeIcon icon={faDiscord} fixedWidth />
           {' '}
-          Discord-Server
+          { t("homecards.discord.title") }
           <Button variant="link" className={styles.cardButton} onClick={() => close()}>
-            <FontAwesomeIcon title="Schließen" icon={faTimes} />
+            <FontAwesomeIcon title={t("general.close")} icon={faTimes} />
           </Button>
         </Card.Title>
         <Card.Text>
           <p>
-            Von der Studierendenvertretung deiner Fakultät {faculty} gibt es einen offiziellen Discord Server.
-            Du kannst ihm hier beitreten: <a href={discordUrl} target="_blank" rel="noreferrer">{discordUrl}</a>
+            { t("homecards.discord.description", {"faculty": faculty}) }
+            <a href={discordUrl} target="_blank" rel="noreferrer">{discordUrl}</a>
           </p>
         </Card.Text>
       </Card.Body>

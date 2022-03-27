@@ -69,7 +69,8 @@
             "close": "Schließen"
         },
         "discord": {
-            "title": "Discord-Server"
+            "title": "Discord-Server",
+            "description": "Von der Studierendenvertretung deiner Fakultät {{ faculty }} gibt es einen offiziellen Discord Server. Du kannst ihm hier beitreten: "
         },
         "survey": {
             "title": "Umfrage",

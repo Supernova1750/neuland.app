@@ -69,7 +69,8 @@
             "close": "Remove"
         },
         "discord": {
-            "title": "Discord-Server"
+            "title": "Discord-Server",
+            "description": "The student council of your faculty {{ faculty }} has an offical discord server. You can join it here: "
         },
         "survey": {
             "title": "Survey",
