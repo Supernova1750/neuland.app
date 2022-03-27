@@ -71,15 +71,24 @@
         "discord": {
             "title": "Discord-Server"
         },
+        "survey": {
+            "title": "Umfrage",
+            "description": "Die Studierendenvertretung möchte mit den Verkehrsbetrieben ein <b>Semesterticket</b> aushandeln. Wir möchten euch alle darum bitten, eure Meinung dazu zu äußern:",
+            "link-text": "An Umfrage teilnehmen"
+        },
         "timetable": {
-            "title": "Stundenplan"
+            "title": "Stundenplan",
+            "no-remaining": "Du hast heute keine Vorlesungen mehr.",
+            "loaderror": "Fehler beim Abruf des Stundenplans."
         },
         "food": {
             "title": "Essen",
-            "title-food": "Food",
+            "title-food": "Essen",
             "title-cafeteria": "Mensa",
             "title-reimanns": "Reimanns",
-            "remainingtext": "und {{ remaining }} weitere Gerichte"
+            "remainingtext": "und {{ remaining }} weitere Gerichte",
+            "empty": "Der heutige Speiseplan ist leer.",
+            "loaderror": "Fehler beim Abruf des Speiseplans.<br />Irgendetwas scheint kaputt zu sein. :("
         },
         "mobility": {
             "title": "Mobilität"
@@ -101,6 +110,9 @@
         },
         "lecturers": {
             "title": "Dozent:innen"
+        },
+        "general": {
+            "close": "Schließen"
         }
     }
 }

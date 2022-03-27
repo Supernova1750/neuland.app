@@ -71,15 +71,24 @@
         "discord": {
             "title": "Discord-Server"
         },
+        "survey": {
+            "title": "Survey",
+            "description": "The student council wants to arange a deal for a <b>semester ticket</b>. We encourage you to tell us what you think:",
+            "link-text": "Take part in the survey"
+        },
         "timetable": {
-            "title": "Timetable"
+            "title": "Timetable",
+            "no-remaining": "You don't have any more classes today.",
+            "loaderror": "Error loading the timetable."
         },
         "food": {            
             "title": "Food",
             "title-food": "Food",
             "title-cafeteria": "Cafeteria",
             "title-reimanns": "Reimanns",
-            "remainingtext": "and {{ remaining }} more options"
+            "remainingtext": "and {{ remaining }} more options",
+            "empty": "Todays meal plan is empty.",
+            "loaderror": "Error loading the meal plan.<br />Something seems to be broken. :("
         },
         "mobility": {
             "title": "Mobility"
@@ -101,6 +110,9 @@
         },
         "lecturers": {
             "title": "Professors"
+        },
+        "general": {
+            "close": "Close"
         }
     }
 }
