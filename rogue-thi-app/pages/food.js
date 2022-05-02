@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 import Button from 'react-bootstrap/Button'
-import Dropdown from 'react-bootstrap/Dropdown'
 import Form from 'react-bootstrap/Form'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Modal from 'react-bootstrap/Modal'
@@ -99,15 +98,15 @@ export default function Mensa () {
     <AppContainer>
       <AppNavbar title="Essen" showBack={'desktop-only'}>
         <AppNavbar.Overflow>
-          <Dropdown.Item variant="link" onClick={() => setShowAllergenSelection(true)}>
+          <AppNavbar.Overflow.Link variant="link" onClick={() => setShowAllergenSelection(true)}>
             Allergene auswählen
-          </Dropdown.Item>
-          <Dropdown.Item variant="link" onClick={() => toggleSelectedRestaurant('mensa')}>
+          </AppNavbar.Overflow.Link>
+          <AppNavbar.Overflow.Link variant="link" onClick={() => toggleSelectedRestaurant('mensa')}>
             Mensa {selectedRestaurants.includes('mensa') ? 'ausblenden' : 'einblenden'}
-          </Dropdown.Item>
-          <Dropdown.Item variant="link" onClick={() => toggleSelectedRestaurant('reimanns')}>
+          </AppNavbar.Overflow.Link>
+          <AppNavbar.Overflow.Link variant="link" onClick={() => toggleSelectedRestaurant('reimanns')}>
             Reimanns {selectedRestaurants.includes('reimanns') ? 'ausblenden' : 'einblenden'}
-          </Dropdown.Item>
+          </AppNavbar.Overflow.Link>
         </AppNavbar.Overflow>
       </AppNavbar>
 

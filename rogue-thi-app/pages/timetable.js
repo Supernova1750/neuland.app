@@ -7,7 +7,6 @@ import SwipeableViews from 'react-swipeable-views'
 import { virtualize } from 'react-swipeable-views-utils'
 
 import Button from 'react-bootstrap/Button'
-import Dropdown from 'react-bootstrap/Dropdown'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Modal from 'react-bootstrap/Modal'
 import ReactPlaceholder from 'react-placeholder'
@@ -185,12 +184,12 @@ export default function Timetable () {
     <AppContainer>
       <AppNavbar title="Stundenplan" showBack={'desktop-only'}>
         <AppNavbar.Overflow>
-          <Dropdown.Item variant="link" onClick={() => setShowTimetableExplanation(true)}>
+          <AppNavbar.Overflow.Link variant="link" onClick={() => setShowTimetableExplanation(true)}>
             Fächer bearbeiten
-          </Dropdown.Item>
-          <Dropdown.Item variant="link" onClick={() => setShowICalExplanation(true)}>
+          </AppNavbar.Overflow.Link>
+          <AppNavbar.Overflow.Link variant="link" onClick={() => setShowICalExplanation(true)}>
             Kalender abonnieren
-          </Dropdown.Item>
+          </AppNavbar.Overflow.Link>
         </AppNavbar.Overflow>
       </AppNavbar>
 
