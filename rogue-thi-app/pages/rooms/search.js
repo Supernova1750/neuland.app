@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import Button from 'react-bootstrap/Button'
-import Dropdown from 'react-bootstrap/Dropdown'
 import Form from 'react-bootstrap/Form'
 import ListGroup from 'react-bootstrap/ListGroup'
 import ReactPlaceholder from 'react-placeholder'
@@ -22,7 +21,7 @@ import { NoSessionError } from '../../lib/backend/thi-session-handler'
 
 import styles from '../../styles/RoomsList.module.css'
 
-const BUILDINGS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'M', 'P', 'W', 'Z']
+const BUILDINGS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'M', 'P', 'W', 'Z']
 const DURATIONS = ['00:15', '00:30', '00:45', '01:00', '01:15', '01:30', '01:45', '02:00', '02:15', '02:30', '02:45', '03:00', '03:15', '03:30', '03:45', '04:00', '04:15', '04:30', '04:45', '05:00', '05:15', '05:30', '05:45', '06:00']
 const TUX_ROOMS = ['G308']
 
@@ -54,7 +53,7 @@ export default function Rooms () {
         await filter()
       } catch (e) {
         if (e instanceof NoSessionError) {
-          router.replace('/login')
+          router.replace('/login?redirect=rooms%2Fsearch')
         } else {
           console.error(e)
           alert(e)
@@ -68,12 +67,12 @@ export default function Rooms () {
     <AppContainer>
       <AppNavbar title="Raumsuche">
         <AppNavbar.Overflow>
-          <Dropdown.Item variant="link" href="/rooms">
+          <AppNavbar.Overflow.Link variant="link" href="/rooms">
             Kartenansicht
-          </Dropdown.Item>
-          <Dropdown.Item variant="link" href="/rooms/list">
+          </AppNavbar.Overflow.Link>
+          <AppNavbar.Overflow.Link variant="link" href="/rooms/list">
             Listenansicht
-          </Dropdown.Item>
+          </AppNavbar.Overflow.Link>
         </AppNavbar.Overflow>
       </AppNavbar>
 

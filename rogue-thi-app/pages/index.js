@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import Button from 'react-bootstrap/Button'
-import Dropdown from 'react-bootstrap/Dropdown'
 import Form from 'react-bootstrap/Form'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Modal from 'react-bootstrap/Modal'
@@ -45,14 +44,17 @@ import styles from '../styles/Home.module.css'
 import TranslateDangerous from '../components/TranslateDangerous'
 
 const CTF_URL = process.env.NEXT_PUBLIC_CTF_URL
+
 const  ALL_THEMES = [
   { style: 'default' },
   { style: 'light' },
   { style: 'dark' },
+  { style: 'thi'},
   { style: 'barbie' },
   { style: 'retro' },
   { style: '95' },
   { style: 'hacker', requiresToken: true }
+
 ]
 
 const PLATFORM_DESKTOP = 'desktop'
@@ -256,9 +258,7 @@ export default function Home () {
   }
 
   function changeTheme (theme) {
-    const expires = new Date(Date.now() + 10 * 365 * 24 * 60 * 60 * 1000) // 10 years in the future
-    document.cookie = `theme=${theme}; expires=${expires.toUTCString()}; path=/; SameSite=Strict; Secure`
-
+    localStorage.theme = theme
     setTheme(theme)
     setShowThemeModal(false)
   }
@@ -271,16 +271,16 @@ export default function Home () {
         </AppNavbar.Button>
         <AppNavbar.Overflow>
           {showDebug && (
-            <Dropdown.Item variant="link" href="/debug">
+            <AppNavbar.Overflow.Link variant="link" href="/debug">
               { t('index.dropdown.apiplayground') }
-            </Dropdown.Item>
+            </AppNavbar.Overflow.Link>
           )}
-          <Dropdown.Item variant="link" href="/imprint">
+          <AppNavbar.Overflow.Link variant="link" href="/imprint">
             { t('index.dropdown.imprint') }
-          </Dropdown.Item>
-          <Dropdown.Item variant="link" onClick={() => forgetSession(router)}>
+          </AppNavbar.Overflow.Link>
+          <AppNavbar.Overflow.Link variant="link" onClick={() => forgetSession(router)}>
             { t('index.dropdown.logout')}
-          </Dropdown.Item>
+          </AppNavbar.Overflow.Link>
         </AppNavbar.Overflow>
       </AppNavbar>
 

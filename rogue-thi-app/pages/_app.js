@@ -1,5 +1,4 @@
-import { React, createContext, useMemo, useState } from 'react'
-import App from 'next/app'
+import { React, createContext, useEffect, useMemo, useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
@@ -16,29 +15,22 @@ export const ThemeContext = createContext('default')
 
 config.autoAddCss = false
 
-function extractThemeFromCookie (req) {
-  let cookie
-  if (typeof req !== 'undefined') {
-    cookie = req.headers.cookie
-  } else if (typeof document !== 'undefined') {
-    cookie = document.cookie
-  }
-
-  if (!cookie) {
-    return 'default'
-  }
-
-  const entry = cookie.split(';').find(x => x.trim().startsWith('theme='))
-  if (!entry) {
-    return 'default'
-  }
-
-  return entry.split('=')[1]
-}
-
-function MyApp ({ Component, pageProps, theme: initialTheme }) {
+function MyApp ({ Component, pageProps }) {
   const router = useRouter()
-  const [theme, setTheme] = useState(initialTheme)
+  const [theme, setTheme] = useState('default')
+  useEffect(() => {
+    // migrate legacy cookie theme setting to localStorage
+    // added 2022-04-15, can be removed later
+    const entry = document.cookie.split(';').find(x => x.trim().startsWith('theme='))
+    if (entry) {
+      localStorage.theme = entry.split('=')[1]
+      document.cookie = `theme=; expires=${new Date().toUTCString()}; path=/; SameSite=Strict; Secure`
+    }
+
+    if (localStorage.theme) {
+      setTheme(localStorage.theme)
+    }
+  }, [])
   const computedTheme = useMemo(() => {
     if (router.pathname === '/become-hackerman') {
       return 'hacker'
@@ -58,7 +50,6 @@ function MyApp ({ Component, pageProps, theme: initialTheme }) {
         <meta name="theme-color" content="#8845ef" />
 
         <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/favicon512.png"></link>
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
         {/* generated using npx pwa-asset-generator (run via Dockerfile) */}
@@ -110,14 +101,6 @@ MyApp.propTypes = {
   Component: PropTypes.any,
   pageProps: PropTypes.any,
   theme: PropTypes.string
-}
-
-MyApp.getInitialProps = async (appContext) => {
-  const appProps = await App.getInitialProps(appContext)
-  return {
-    ...appProps,
-    theme: extractThemeFromCookie(appContext.ctx.req)
-  }
 }
 
 export default appWithTranslation(MyApp)

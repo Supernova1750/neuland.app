@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import Dropdown from 'react-bootstrap/Dropdown'
 import ListGroup from 'react-bootstrap/ListGroup'
 import ReactPlaceholder from 'react-placeholder'
 
@@ -59,7 +58,7 @@ export default function RoomList () {
         setFreeRooms(days)
       } catch (e) {
         if (e instanceof NoSessionError) {
-          router.replace('/login')
+          router.replace('/login?redirect=rooms%2Flist')
         } else {
           console.error(e)
           alert(e)
@@ -73,12 +72,12 @@ export default function RoomList () {
     <AppContainer>
       <AppNavbar title="Stündlicher Raumplan">
         <AppNavbar.Overflow>
-          <Dropdown.Item variant="link" href="/rooms">
+          <AppNavbar.Overflow.Link variant="link" href="/rooms">
             Kartenansicht
-          </Dropdown.Item>
-          <Dropdown.Item variant="link" href="/rooms/search">
+          </AppNavbar.Overflow.Link>
+          <AppNavbar.Overflow.Link variant="link" href="/rooms/search">
             Erweiterte Suche
-          </Dropdown.Item>
+          </AppNavbar.Overflow.Link>
         </AppNavbar.Overflow>
       </AppNavbar>
 

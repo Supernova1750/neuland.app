@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import ReactPlaceholder from 'react-placeholder'
 import { useRouter } from 'next/router'
 
-import Dropdown from 'react-bootstrap/Dropdown'
 import ListGroup from 'react-bootstrap/ListGroup'
 
 import AppBody from '../components/page/AppBody'
@@ -33,7 +32,7 @@ export default function Grades () {
         setGradeAverage(average)
       } catch (e) {
         if (e instanceof NoSessionError) {
-          router.replace('/login')
+          router.replace('/login?redirect=grades')
         } else if (e.message === 'Query not possible') {
           // according to the original developers,
           // { status: -102, data: "Query not possible" }
@@ -77,12 +76,12 @@ export default function Grades () {
     <AppContainer>
       <AppNavbar title="Noten & Fächer">
         <AppNavbar.Overflow>
-          <Dropdown.Item variant="link" onClick={() => copyGradeFormula()}>
+          <AppNavbar.Overflow.Link variant="link" onClick={() => copyGradeFormula()}>
             Notenschnitt Formel kopieren
-          </Dropdown.Item>
-          <Dropdown.Item variant="link" onClick={() => downloadGradeCSV()}>
+          </AppNavbar.Overflow.Link>
+          <AppNavbar.Overflow.Link variant="link" onClick={() => downloadGradeCSV()}>
             Noten als CSV exportieren
-          </Dropdown.Item>
+          </AppNavbar.Overflow.Link>
         </AppNavbar.Overflow>
       </AppNavbar>
 
