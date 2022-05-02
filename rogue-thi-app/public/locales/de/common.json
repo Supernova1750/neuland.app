@@ -1,4 +1,5 @@
 {
+    "name": "Deutsch",
     "general": {
         "close": "Schließen",
         "back": "Zurück"
@@ -42,6 +43,7 @@
                 "default": "Automatisch",
                 "light": "Hell",
                 "dark": "Dunkel",
+                "thi": "THI Corporate Identity",
                 "barbie": "Barbie & Ken",
                 "retro": "Retro",
                 "95": "Windows 95",

@@ -42,14 +42,15 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import styles from '../styles/Home.module.css'
 import TranslateDangerous from '../components/TranslateDangerous'
+import Dropdown from 'react-bootstrap/Dropdown'
 
 const CTF_URL = process.env.NEXT_PUBLIC_CTF_URL
 
-const  ALL_THEMES = [
+const ALL_THEMES = [
   { style: 'default' },
   { style: 'light' },
   { style: 'dark' },
-  { style: 'thi'},
+  { style: 'thi' },
   { style: 'barbie' },
   { style: 'retro' },
   { style: '95' },
@@ -69,7 +70,7 @@ const ALL_DASHBOARD_CARDS = [
       <InstallPrompt
         key="install"
         onHide={() => hidePromptCard('install')}
-        />
+      />
     )
   },
   {
@@ -79,7 +80,7 @@ const ALL_DASHBOARD_CARDS = [
       <DiscordPrompt
         key="discord"
         onHide={() => hidePromptCard('discord')}
-        />
+      />
     )
   },
   {
@@ -111,7 +112,7 @@ const ALL_DASHBOARD_CARDS = [
         icon={faDoorOpen}
         i18nKey="rooms"
         link="/rooms"
-        />
+      />
     )
   },
   {
@@ -123,7 +124,7 @@ const ALL_DASHBOARD_CARDS = [
         icon={faBook}
         i18nKey="library"
         link="/library"
-        />
+      />
     )
   },
   {
@@ -135,7 +136,7 @@ const ALL_DASHBOARD_CARDS = [
         icon={faScroll}
         i18nKey="grades"
         link="/grades"
-        />
+      />
     )
   },
   {
@@ -147,7 +148,7 @@ const ALL_DASHBOARD_CARDS = [
         icon={faUser}
         i18nKey="personal"
         link="/personal"
-        />
+      />
     )
   },
   {
@@ -159,12 +160,12 @@ const ALL_DASHBOARD_CARDS = [
         icon={faUserGraduate}
         i18nKey="lecturers"
         link="/lecturers"
-        />
+      />
     )
   }
 ]
 
-export default function Home () {
+export default function Home() {
   const router = useRouter()
   const { t } = useTranslation()
 
@@ -176,9 +177,12 @@ export default function Home () {
   const [showDebug, setShowDebug] = useState(false)
   const [theme, setTheme] = useContext(ThemeContext)
   const themeModalBody = useRef()
+  const locales = useRouter().locales
 
   useEffect(() => {
-    async function load () {
+    async function load() {
+      
+
       if (localStorage.personalizedDashboard) {
         const entries = JSON.parse(localStorage.personalizedDashboard)
           .map(key => ALL_DASHBOARD_CARDS.find(x => x.key === key))
@@ -213,14 +217,14 @@ export default function Home () {
     load()
   }, [])
 
-  function changeDashboardEntries (entries, hiddenEntries) {
+  function changeDashboardEntries(entries, hiddenEntries) {
     localStorage.personalizedDashboard = JSON.stringify(entries.map(x => x.key))
     localStorage.personalizedDashboardHidden = JSON.stringify(hiddenEntries.map(x => x.key))
     setShownDashboardEntries(entries)
     setHiddenDashboardEntries(hiddenEntries)
   }
 
-  function moveDashboardEntry (oldIndex, diff) {
+  function moveDashboardEntry(oldIndex, diff) {
     const newIndex = oldIndex + diff
     if (newIndex < 0 || newIndex >= shownDashboardEntries.length) {
       return
@@ -234,7 +238,7 @@ export default function Home () {
     changeDashboardEntries(entries, hiddenDashboardEntries)
   }
 
-  function hideDashboardEntry (key) {
+  function hideDashboardEntry(key) {
     const entries = shownDashboardEntries.slice(0)
     const hiddenEntries = hiddenDashboardEntries.slice(0)
 
@@ -247,7 +251,7 @@ export default function Home () {
     changeDashboardEntries(entries, hiddenEntries)
   }
 
-  function bringBackDashboardEntry (index) {
+  function bringBackDashboardEntry(index) {
     const entries = shownDashboardEntries.slice(0)
     const hiddenEntries = hiddenDashboardEntries.slice(0)
 
@@ -257,29 +261,29 @@ export default function Home () {
     changeDashboardEntries(entries, hiddenEntries)
   }
 
-  function changeTheme (theme) {
+  function changeTheme(theme) {
     localStorage.theme = theme
     setTheme(theme)
     setShowThemeModal(false)
   }
-
+  // TODO: load language name from language pack to display in dropdown menu
   return (
     <AppContainer>
       <AppNavbar title="neuland.app" showBack={false}>
         <AppNavbar.Button onClick={() => setShowThemeModal(true)}>
-          <FontAwesomeIcon title={ t('index.personalize.title') } icon={faPen} fixedWidth />
+          <FontAwesomeIcon title={t('index.personalize.title')} icon={faPen} fixedWidth />
         </AppNavbar.Button>
         <AppNavbar.Overflow>
           {showDebug && (
             <AppNavbar.Overflow.Link variant="link" href="/debug">
-              { t('index.dropdown.apiplayground') }
+              {t('index.dropdown.apiplayground')}
             </AppNavbar.Overflow.Link>
           )}
           <AppNavbar.Overflow.Link variant="link" href="/imprint">
-            { t('index.dropdown.imprint') }
+            {t('index.dropdown.imprint')}
           </AppNavbar.Overflow.Link>
           <AppNavbar.Overflow.Link variant="link" onClick={() => forgetSession(router)}>
-            { t('index.dropdown.logout')}
+            {t('index.dropdown.logout')}
           </AppNavbar.Overflow.Link>
         </AppNavbar.Overflow>
       </AppNavbar>
@@ -288,12 +292,22 @@ export default function Home () {
         <div className={styles.cardDeck}>
           <Modal show={!!showThemeModal} dialogClassName={styles.themeModal} onHide={() => setShowThemeModal(false)}>
             <Modal.Header closeButton>
-              <Modal.Title>{ t('index.personalize.title') }</Modal.Title>
+              <Modal.Title>{t('index.personalize.title')}</Modal.Title>
             </Modal.Header>
             <Modal.Body ref={themeModalBody}>
-              <h3 className={styles.themeHeader}>{ t('index.personalize.language.title') }</h3>
-              ADD FUNCTIALITLY
-              <h3 className={styles.themeHeader}>{ t('index.personalize.themes.title') }</h3>
+              <h3 className={styles.themeHeader}>{t('index.personalize.language.title')}</h3>
+              <Dropdown>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  { t('name') }
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  { locales.map((locale) => (
+                    <Dropdown.Item href={ locale }>{ locale }</Dropdown.Item>
+                  )) }
+                </Dropdown.Menu>
+              </Dropdown>
+              <h3 className={styles.themeHeader}>{t('index.personalize.themes.title')}</h3>
               <Form>
                 {ALL_THEMES.map((availableTheme, i) => (
                   <Button
@@ -304,7 +318,7 @@ export default function Home () {
                     onClick={() => changeTheme(availableTheme.style)}
                     disabled={availableTheme.requiresToken && unlockedThemes.indexOf(availableTheme.style) === -1}
                   >
-                    { t('index.personalize.themes.' + availableTheme.style) }
+                    {t('index.personalize.themes.' + availableTheme.style)}
                   </Button>
                 ))}
               </Form>
@@ -312,7 +326,7 @@ export default function Home () {
                 <TranslateDangerous i18nKey="index.personalize.themes.notice" />
               </p>
 
-              <h3 className={styles.themeHeader}>{ t('index.personalize.dashboard.title') }</h3>
+              <h3 className={styles.themeHeader}>{t('index.personalize.dashboard.title')}</h3>
               <p>
                 <TranslateDangerous i18nKey="index.personalize.dashboard.notice" />
               </p>
@@ -320,17 +334,17 @@ export default function Home () {
                 {shownDashboardEntries.map((entry, i) => (
                   <ListGroup.Item key={i} className={styles.personalizeItem}>
                     <div className={styles.personalizeLabel}>
-                      { t('homecards.' + entry.key + '.title') }
+                      {t('homecards.' + entry.key + '.title')}
                     </div>
                     <div className={styles.personalizeButtons}>
                       <Button variant="text" onClick={() => moveDashboardEntry(i, -1)}>
-                        <FontAwesomeIcon title={ t('index.personalize.dashboard.up')} icon={faChevronUp} fixedWidth />
+                        <FontAwesomeIcon title={t('index.personalize.dashboard.up')} icon={faChevronUp} fixedWidth />
                       </Button>
                       <Button variant="text" onClick={() => moveDashboardEntry(i, +1)}>
-                        <FontAwesomeIcon title={ t('index.personalize.dashboard.down')} icon={faChevronDown} fixedWidth />
+                        <FontAwesomeIcon title={t('index.personalize.dashboard.down')} icon={faChevronDown} fixedWidth />
                       </Button>
                       <Button variant="text" onClick={() => hideDashboardEntry(entry.key)}>
-                        <FontAwesomeIcon title={ t('index.personalize.dashboard.remove')} icon={faTrash} fixedWidth />
+                        <FontAwesomeIcon title={t('index.personalize.dashboard.remove')} icon={faTrash} fixedWidth />
                       </Button>
                     </div>
                   </ListGroup.Item>
@@ -338,16 +352,16 @@ export default function Home () {
               </ListGroup>
               <br />
 
-              <h4>{ t('index.personalize.dashboard.title-hidden') }</h4>
+              <h4>{t('index.personalize.dashboard.title-hidden')}</h4>
               <ListGroup>
                 {hiddenDashboardEntries.map((entry, i) => (
                   <ListGroup.Item key={i} className={styles.personalizeItem}>
                     <div className={styles.personalizeLabel}>
-                      { t('homecards.' + entry.key) }
+                      {t('homecards.' + entry.key)}
                     </div>
                     <div className={styles.personalizeButtons}>
                       <Button variant="text" onClick={() => bringBackDashboardEntry(i)}>
-                        <FontAwesomeIcon title={ t('index.personalize.dashboard.restore') } icon={faTrashRestore} fixedWidth />
+                        <FontAwesomeIcon title={t('index.personalize.dashboard.restore')} icon={faTrashRestore} fixedWidth />
                       </Button>
                     </div>
                   </ListGroup.Item>
@@ -359,7 +373,7 @@ export default function Home () {
                 variant="secondary"
                 onClick={() => changeDashboardEntries(ALL_DASHBOARD_CARDS, [])}
               >
-                { t('index.personalize.dashboard.reset') }
+                {t('index.personalize.dashboard.reset')}
               </Button>
             </Modal.Body>
           </Modal>
