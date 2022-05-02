@@ -297,12 +297,12 @@ export default function Home() {
             <Modal.Body ref={themeModalBody}>
               <h3 className={styles.themeHeader}>{t('index.personalize.language.title')}</h3>
               <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                <Dropdown.Toggle id="dropdown-basic">
                   { t('name') }
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  { locales.map((locale) => (
+                  { locales.map((locale) => ( // remove current locale from list
                     <Dropdown.Item href={ locale }>{ locale }</Dropdown.Item>
                   )) }
                 </Dropdown.Menu>
