@@ -6,8 +6,6 @@ import React from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 
-import Dropdown from 'react-bootstrap/Dropdown'
-
 import AppBody from '../../components/page/AppBody'
 import AppContainer from '../../components/page/AppContainer'
 import AppNavbar from '../../components/page/AppNavbar'
@@ -46,15 +44,15 @@ export default function Rooms ({ roomData }) {
     <AppContainer className={styles.container}>
       <AppNavbar title="Raumplan" showBack={'desktop-only'}>
         <AppNavbar.Overflow>
-          <Dropdown.Item variant="link" href="/rooms/search">
+          <AppNavbar.Overflow.Link variant="link" href="/rooms/search">
             Erweiterte Suche
-          </Dropdown.Item>
-          <Dropdown.Item variant="link" href="/rooms/list">
+          </AppNavbar.Overflow.Link>
+          <AppNavbar.Overflow.Link variant="link" href="/rooms/list">
             Listenansicht
-          </Dropdown.Item>
-          <Dropdown.Item variant="link" onClick={() => window.open('https://ophase.neuland.app/', '_blank')}>
+          </AppNavbar.Overflow.Link>
+          <AppNavbar.Overflow.Link variant="link" onClick={() => window.open('https://ophase.neuland.app/', '_blank')}>
             Campus- {'&'} Stadtführung
-          </Dropdown.Item>
+          </AppNavbar.Overflow.Link>
         </AppNavbar.Overflow>
       </AppNavbar>
 
