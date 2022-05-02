@@ -9,6 +9,7 @@ import { formatFriendlyTime, formatNearDate } from '../../lib/date-utils'
 import { getFriendlyTimetable, getTimetableEntryName } from '../../lib/backend-utils/timetable-utils'
 import BaseCard from './BaseCard'
 import { NoSessionError } from '../../lib/backend/thi-session-handler'
+import TranslateDangerous from '../TranslateDangerous'
 
 export default function TimetableCard () {
   const router = useRouter()
@@ -19,6 +20,7 @@ export default function TimetableCard () {
     async function load () {
       try {
         setTimetable(await getFriendlyTimetable(new Date(), false))
+        console.log(timetable)
       } catch (e) {
         if (e instanceof NoSessionError) {
           router.replace('/login')
@@ -50,11 +52,11 @@ export default function TimetableCard () {
           )}
           {timetable && timetable.length === 0 &&
             <ListGroup.Item>
-              Du hast heute keine Vorlesungen mehr.
+              <TranslateDangerous i18nKey="homecards.timetable.no-remaining"/>
             </ListGroup.Item>}
           {timetableError &&
             <ListGroup.Item>
-              Fehler beim Abruf des Stundenplans.
+              <TranslateDangerous i18nKey="homecards.timetable.loaderror"/>
             </ListGroup.Item>}
         </ListGroup>
       </ReactPlaceholder>

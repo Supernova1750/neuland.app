@@ -1,4 +1,8 @@
 {
+    "general": {
+        "close": "Schließen",
+        "back": "Zurück"
+    },
     "login": {
         "form": {
             "username": "THI-Benutzername",
@@ -113,9 +117,7 @@
         },
         "lecturers": {
             "title": "Dozent:innen"
-        },
-        "general": {
-            "close": "Schließen"
         }
+        
     }
 }
