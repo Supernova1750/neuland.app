@@ -164,7 +164,7 @@ const ALL_DASHBOARD_CARDS = [
   }
 ]
 
-export default function Home() {
+export default function Home () {
   const router = useRouter()
   const { t } = useTranslation()
 
@@ -179,9 +179,7 @@ export default function Home() {
   const locales = useRouter().locales
 
   useEffect(() => {
-    async function load() {
-      
-
+    async function load () {
       if (localStorage.personalizedDashboard) {
         const entries = JSON.parse(localStorage.personalizedDashboard)
           .map(key => ALL_DASHBOARD_CARDS.find(x => x.key === key))
@@ -216,14 +214,14 @@ export default function Home() {
     load()
   }, [])
 
-  function changeDashboardEntries(entries, hiddenEntries) {
+  function changeDashboardEntries (entries, hiddenEntries) {
     localStorage.personalizedDashboard = JSON.stringify(entries.map(x => x.key))
     localStorage.personalizedDashboardHidden = JSON.stringify(hiddenEntries.map(x => x.key))
     setShownDashboardEntries(entries)
     setHiddenDashboardEntries(hiddenEntries)
   }
 
-  function moveDashboardEntry(oldIndex, diff) {
+  function moveDashboardEntry (oldIndex, diff) {
     const newIndex = oldIndex + diff
     if (newIndex < 0 || newIndex >= shownDashboardEntries.length) {
       return
@@ -237,7 +235,7 @@ export default function Home() {
     changeDashboardEntries(entries, hiddenDashboardEntries)
   }
 
-  function hideDashboardEntry(key) {
+  function hideDashboardEntry (key) {
     const entries = shownDashboardEntries.slice(0)
     const hiddenEntries = hiddenDashboardEntries.slice(0)
 
@@ -250,7 +248,7 @@ export default function Home() {
     changeDashboardEntries(entries, hiddenEntries)
   }
 
-  function bringBackDashboardEntry(index) {
+  function bringBackDashboardEntry (index) {
     const entries = shownDashboardEntries.slice(0)
     const hiddenEntries = hiddenDashboardEntries.slice(0)
 
@@ -260,7 +258,7 @@ export default function Home() {
     changeDashboardEntries(entries, hiddenEntries)
   }
 
-  function changeTheme(theme) {
+  function changeTheme (theme) {
     localStorage.theme = theme
     setTheme(theme)
     setShowThemeModal(false)
@@ -301,8 +299,8 @@ export default function Home() {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  { locales.map((locale) => ( // remove current locale from list
-                    <Dropdown.Item href={ locale }>{ locale }</Dropdown.Item>
+                  { locales.map((locale, i) => ( // remove current locale from list
+                    <Dropdown.Item key={ i } href={ locale }>{ locale }</Dropdown.Item>
                   )) }
                 </Dropdown.Menu>
               </Dropdown>

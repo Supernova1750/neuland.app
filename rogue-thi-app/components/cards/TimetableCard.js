@@ -31,7 +31,7 @@ export default function TimetableCard () {
       }
     }
     load()
-  }, [router])
+  }, [router, timetable])
 
   return (
     <BaseCard

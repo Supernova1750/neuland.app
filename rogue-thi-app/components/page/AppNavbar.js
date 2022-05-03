@@ -40,7 +40,7 @@ export default function AppNavbar ({ title, showBack, children }) {
         <Navbar.Brand className={styles.left}>
           {showBackEffective && (
             <Button variant="link" onClick={() => router.back()} className={styles.back}>
-              <FontAwesomeIcon title={ t("general.back") } icon={faChevronLeft} fixedWidth />
+              <FontAwesomeIcon title={ t('general.back') } icon={faChevronLeft} fixedWidth />
             </Button>
           )}
           <div className={styles.titleText}>
