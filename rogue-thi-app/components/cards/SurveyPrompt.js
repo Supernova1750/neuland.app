@@ -6,8 +6,8 @@ import Card from 'react-bootstrap/Card'
 import { faPoll, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { useTranslation } from 'next-i18next'
 import TranslateDangerous from '../TranslateDangerous'
+import { useTranslation } from 'next-i18next'
 
 import styles from '../../styles/Home.module.css'
 
@@ -22,9 +22,9 @@ export default function SurveyPrompt ({ onHide }) {
         <Card.Title>
           <FontAwesomeIcon icon={faPoll} fixedWidth />
           {' '}
-          {  t("homecards.survey.title") }
+          { t('homecards.survey.title') }
           <Button variant="link" className={styles.cardButton} onClick={() => onHide()}>
-            <FontAwesomeIcon title={ t("general.close") } icon={faTimes} />
+            <FontAwesomeIcon title={ t('general.close') } icon={faTimes} />
           </Button>
         </Card.Title>
         <Card.Text>
@@ -33,7 +33,7 @@ export default function SurveyPrompt ({ onHide }) {
           </p>
           <p>
             <a href={SURVEY_URL} target="_blank" rel="noreferrer">
-              <Button variant="outline-secondary">{ t("homecards.survey.link-text") }</Button>
+              <Button variant="outline-secondary">{ t('homecards.survey.link-text') }</Button>
             </a>
           </p>
         </Card.Text>

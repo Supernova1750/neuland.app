@@ -6,8 +6,8 @@ import PropTypes from 'prop-types'
 import TheMatrixAnimation from './../components/TheMatrixAnimation'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import { config } from '@fortawesome/fontawesome-svg-core'
 import { appWithTranslation } from 'next-i18next'
+import { config } from '@fortawesome/fontawesome-svg-core'
 
 import '../styles/globals.css'
 

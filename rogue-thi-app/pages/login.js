@@ -12,11 +12,10 @@ import { createSession } from '../lib/backend/thi-session-handler'
 
 import styles from '../styles/Login.module.css'
 
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next'
-import TranslateDangerous from '../components/TranslateDangerous'
-import Link from 'next/link'
 import SwitchLanguge from '../components/SwitchLanguage'
+import TranslateDangerous from '../components/TranslateDangerous'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 const ORIGINAL_ERROR_WRONG_CREDENTIALS = 'Wrong credentials'
 const FRIENDLY_ERROR_WRONG_CREDENTIALS = 'Deine Zugangsdaten sind ungültig.'
@@ -132,11 +131,11 @@ export default function Login () {
   )
 }
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps ({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common']))
       // Will be passed to the page component as props
-    },
-  };
+    }
+  }
 }

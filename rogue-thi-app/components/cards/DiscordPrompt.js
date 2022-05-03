@@ -55,14 +55,14 @@ export default function DiscordPrompt ({ onHide }) {
         <Card.Title>
           <FontAwesomeIcon icon={faDiscord} fixedWidth />
           {' '}
-          { t("homecards.discord.title") }
+          { t('homecards.discord.title') }
           <Button variant="link" className={styles.cardButton} onClick={() => close()}>
-            <FontAwesomeIcon title={t("general.close")} icon={faTimes} />
+            <FontAwesomeIcon title={t('general.close')} icon={faTimes} />
           </Button>
         </Card.Title>
         <Card.Text>
           <p>
-            { t("homecards.discord.description", {"faculty": faculty}) }
+            { t('homecards.discord.description', { faculty }) }
             <a href={discordUrl} target="_blank" rel="noreferrer">{discordUrl}</a>
           </p>
         </Card.Text>

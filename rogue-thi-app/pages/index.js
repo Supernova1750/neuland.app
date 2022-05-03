@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import Button from 'react-bootstrap/Button'
@@ -37,19 +36,19 @@ import InstallPrompt from '../components/cards/InstallPrompt'
 import MobilityCard from '../components/cards/MobilityCard'
 import TimetableCard from '../components/cards/TimetableCard'
 
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import TranslateDangerous from '../components/TranslateDangerous'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 import styles from '../styles/Home.module.css'
-import TranslateDangerous from '../components/TranslateDangerous'
 
-const CTF_URL = process.env.NEXT_PUBLIC_CTF_URL
+// const CTF_URL = process.env.NEXT_PUBLIC_CTF_URL
 
-const  ALL_THEMES = [
+const ALL_THEMES = [
   { style: 'default' },
   { style: 'light' },
   { style: 'dark' },
-  { style: 'thi'},
+  { style: 'thi' },
   { style: 'barbie' },
   { style: 'retro' },
   { style: '95' },
@@ -373,11 +372,11 @@ export default function Home () {
   )
 }
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps ({ locale }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common']))
       // Will be passed to the page component as props
-    },
-  };
+    }
+  }
 }

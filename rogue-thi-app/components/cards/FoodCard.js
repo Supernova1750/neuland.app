@@ -4,17 +4,16 @@ import ReactPlaceholder from 'react-placeholder'
 import { faUtensils } from '@fortawesome/free-solid-svg-icons'
 
 import BaseCard from './BaseCard'
+import TranslateDangerous from '../TranslateDangerous'
 import { formatISODate } from '../../lib/date-utils'
 import { loadFoodEntries } from '../../lib/backend-utils/food-utils'
 import { useTranslation } from 'next-i18next'
-import TranslateDangerous from '../TranslateDangerous'
 
 export default function FoodCard () {
   const [foodEntries, setFoodEntries] = useState(null)
   const [foodCardTitle, setFoodCardTitle] = useState('food')
   const [foodError, setFoodError] = useState(null)
   const { t } = useTranslation()
-
 
   useEffect(() => {
     async function load () {
@@ -38,7 +37,7 @@ export default function FoodCard () {
         } else if (todayEntries.length > 2) {
           setFoodEntries([
             todayEntries[0].name,
-            t('homecards.food.remainingtext', {"remaining": todayEntries.length - 1})
+            t('homecards.food.remainingtext', { remaining: todayEntries.length - 1 })
           ])
         } else {
           setFoodEntries(todayEntries.map(x => x.name))
@@ -49,7 +48,7 @@ export default function FoodCard () {
       }
     }
     load()
-  }, [])
+  }, [t])
 
   return (
     <BaseCard

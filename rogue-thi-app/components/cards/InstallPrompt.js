@@ -8,9 +8,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { OS_ANDROID, OS_IOS, useOperatingSystem } from '../../lib/hooks/os-hook'
 
+import TranslateDangerous from '../TranslateDangerous'
 import styles from '../../styles/Home.module.css'
 import { useTranslation } from 'next-i18next'
-import TranslateDangerous from '../TranslateDangerous'
 
 export default function InstallPrompt ({ onHide }) {
   const [showPrompt, setShowPrompt] = useState(false)

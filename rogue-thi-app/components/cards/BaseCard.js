@@ -20,7 +20,7 @@ export default function BaseCard ({ link, icon, i18nKey, title, className, child
           <Card.Title>
             <FontAwesomeIcon icon={icon} fixedWidth />
             {' '}
-            { title ||  t('homecards.' + i18nKey + '.title') }
+            { title || t('homecards.' + i18nKey + '.title') }
             <Button variant="link" className={styles.cardButton}>
               <FontAwesomeIcon icon={faChevronRight} />
             </Button>

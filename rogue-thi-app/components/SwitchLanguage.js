@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-export default function SwitchLanguge() {
-    const router = useRouter()
-    return (<>
+export default function SwitchLanguge () {
+  const router = useRouter()
+  return (<>
         <Link href={router.pathname} locale="en" >
           <a>English</a>
         </Link>

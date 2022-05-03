@@ -42,7 +42,7 @@ export default function MobilityCard () {
   }, [mobilitySettings])
   const mobilityLabel = useMemo(() => {
     return mobilitySettings ? getMobilityLabel(mobilitySettings.kind, mobilitySettings.station) : t('homecards.mobility.title')
-  }, [mobilitySettings])
+  }, [mobilitySettings, t])
 
   useEffect(() => {
     setMobilitySettings(getMobilitySettings())
