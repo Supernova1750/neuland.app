@@ -1,4 +1,9 @@
 {
+    "name": "Deutsch",
+    "general": {
+        "close": "Schließen",
+        "back": "Zurück"
+    },
     "login": {
         "form": {
             "username": "THI-Benutzername",
@@ -38,6 +43,7 @@
                 "default": "Automatisch",
                 "light": "Hell",
                 "dark": "Dunkel",
+                "thi": "THI Corporate Identity",
                 "barbie": "Barbie & Ken",
                 "retro": "Retro",
                 "95": "Windows 95",
@@ -113,9 +119,7 @@
         },
         "lecturers": {
             "title": "Dozent:innen"
-        },
-        "general": {
-            "close": "Schließen"
         }
+        
     }
 }

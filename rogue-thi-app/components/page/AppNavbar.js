@@ -10,6 +10,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import { faChevronLeft, faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
 import { useMediaQuery } from '../../lib/hooks/media-query-hook'
 
@@ -18,6 +19,7 @@ import styles from '../../styles/AppNavbar.module.css'
 export default function AppNavbar ({ title, showBack, children }) {
   const router = useRouter()
   const isDesktop = useMediaQuery('(min-width: 768px)')
+  const { t } = useTranslation()
   const showBackEffective = useMemo(() => {
     if (typeof showBack === 'undefined') {
       return true
@@ -38,7 +40,7 @@ export default function AppNavbar ({ title, showBack, children }) {
         <Navbar.Brand className={styles.left}>
           {showBackEffective && (
             <Button variant="link" onClick={() => router.back()} className={styles.back}>
-              <FontAwesomeIcon title="Zurück" icon={faChevronLeft} fixedWidth />
+              <FontAwesomeIcon title={ t("general.back") } icon={faChevronLeft} fixedWidth />
             </Button>
           )}
           <div className={styles.titleText}>
