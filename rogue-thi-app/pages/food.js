@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -17,6 +18,9 @@ import AppTabbar from '../components/page/AppTabbar'
 import { formatNearDate } from '../lib/date-utils'
 import { loadFoodEntries } from '../lib/backend-utils/food-utils'
 
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
+
 import styles from '../styles/Mensa.module.css'
 
 import allergenMap from '../data/allergens.json'
@@ -32,6 +36,9 @@ Object.keys(allergenMap)
   .forEach(key => delete allergenMap[key])
 
 export default function Mensa () {
+  const router = useRouter()
+  const { t } = useTranslation()
+
   const [foodEntries, setFoodEntries] = useState(null)
   const [selectedRestaurants, setSelectedRestaurants] = useState(['mensa'])
   const [showMealDetails, setShowMealDetails] = useState(null)
@@ -42,16 +49,17 @@ export default function Mensa () {
   useEffect(() => {
     async function load () {
       try {
-        setFoodEntries(await loadFoodEntries(selectedRestaurants))
+        setFoodEntries(await loadFoodEntries(selectedRestaurants, router.locale))
       } catch (e) {
         console.error(e)
         alert(e)
       }
     }
     load()
-  }, [selectedRestaurants])
+  }, [selectedRestaurants, router])
 
   useEffect(() => {
+    console.log(t('allergens', { ns: 'allergens' }))
     if (localStorage.selectedAllergens) {
       setAllergenSelection(JSON.parse(localStorage.selectedAllergens))
     }
@@ -61,7 +69,7 @@ export default function Mensa () {
     if (localStorage.isStudent === 'false') {
       setIsStudent(false)
     }
-  }, [])
+  }, [t])
 
   function toggleSelectedRestaurant (name) {
     const checked = selectedRestaurants.includes(name)
@@ -96,16 +104,16 @@ export default function Mensa () {
 
   return (
     <AppContainer>
-      <AppNavbar title="Essen" showBack={'desktop-only'}>
+      <AppNavbar title={ t('title', { ns: 'food' }) } showBack={'desktop-only'}>
         <AppNavbar.Overflow>
           <AppNavbar.Overflow.Link variant="link" onClick={() => setShowAllergenSelection(true)}>
-            Allergene auswählen
+            {t('options.allergens.title', { ns: 'food' })}
           </AppNavbar.Overflow.Link>
           <AppNavbar.Overflow.Link variant="link" onClick={() => toggleSelectedRestaurant('mensa')}>
-            Mensa {selectedRestaurants.includes('mensa') ? 'ausblenden' : 'einblenden'}
+            {selectedRestaurants.includes('mensa') ? t('options.mensa.disable', { ns: 'food' }) : t('options.mensa.enable', { ns: 'food' })}
           </AppNavbar.Overflow.Link>
           <AppNavbar.Overflow.Link variant="link" onClick={() => toggleSelectedRestaurant('reimanns')}>
-            Reimanns {selectedRestaurants.includes('reimanns') ? 'ausblenden' : 'einblenden'}
+            {selectedRestaurants.includes('reimanns') ? t('options.reimanns.disable', { ns: 'food' }) : t('options.reimanns.enable', { ns: 'food' })}
           </AppNavbar.Overflow.Link>
         </AppNavbar.Overflow>
       </AppNavbar>
@@ -169,7 +177,7 @@ export default function Mensa () {
           {foodEntries && foodEntries.length === 0 &&
             <ListGroup>
               <ListGroup.Item>
-                Der Speiseplan ist leer.
+                {t('entrylist.empty', { ns: 'food' })}
               </ListGroup.Item>
             </ListGroup>
           }
@@ -245,20 +253,20 @@ export default function Mensa () {
 
         <Modal show={showAllergenSelection} onHide={() => setShowAllergenSelection(false)}>
           <Modal.Header closeButton>
-            <Modal.Title>Allergene auswählen</Modal.Title>
+            <Modal.Title>{t('options.allergens.title', { ns: 'food' })}</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
             <p>
-              Wähle die Allergene aus, bei denen du gesondert gewarnt werden möchtest. Deine Angaben werden nur lokal auf deinem Gerät gespeichert und nicht übermittelt. (Auch nicht an die THI.)
+              {t('options.allergens.description', { ns: 'food' })} hello
             </p>
 
             <Form>
-              {Object.entries(allergenMap).map(([key, value]) => (
+              {Object.entries(t('allergens', { ns: 'allergens', returnObjects: true })).map(([key, value]) => (
                 <Form.Check
                   key={key}
                   id={'allergen-checkbox-' + key}
-                  label={<span><strong>{key}</strong>{' – '}{value}</span>}
+                  label={<span><strong>{key}</strong>{' – '}{value}</span> }
                   checked={allergenSelection[key] || false}
                   onChange={e => setAllergenSelection({ ...allergenSelection, [key]: e.target.checked })}
                 />
@@ -275,4 +283,13 @@ export default function Mensa () {
       <AppTabbar />
     </AppContainer>
   )
+}
+
+export async function getStaticProps ({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'food', 'allergens']))
+      // Will be passed to the page component as props
+    }
+  }
 }
