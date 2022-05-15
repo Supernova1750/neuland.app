@@ -1,10 +1,10 @@
 import NeulandAPI from '../backend/neuland-api'
 import { formatISODate } from '../date-utils'
 
-export async function loadFoodEntries (restaurants) {
+export async function loadFoodEntries (restaurants, lang) {
   const entries = []
   if (restaurants.includes('mensa')) {
-    const data = await NeulandAPI.getMensaPlan()
+    const data = await NeulandAPI.getMensaPlan(lang)
     data.forEach(day => day.meals.forEach(entry => {
       entry.restaurant = 'Mensa'
     }))

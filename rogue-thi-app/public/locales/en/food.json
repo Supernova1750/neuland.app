@@ -1,0 +1,20 @@
+{
+    "title": "Food",
+    "options": {
+        "allergens": {
+            "title": "Select allergens",
+            "description": "Wähle die Allergene aus, bei denen du gesondert gewarnt werden möchtest. Deine Angaben werden nur lokal auf deinem Gerät gespeichert und nicht übermittelt. (Auch nicht an die THI.)"
+        }, 
+        "mensa": {
+            "enable": "Mensa einblenden",
+            "disable": "Mensa ausblenden"
+        },
+        "reimanns": {
+            "enable": "Reimanns einblenden",
+            "disable": "Reimanns ausblenden"
+        }
+    },
+    "entrylist": {
+        "empty": "Der Speiseplan ist leer."
+    }
+}

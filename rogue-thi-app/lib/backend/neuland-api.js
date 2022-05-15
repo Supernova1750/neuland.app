@@ -21,8 +21,8 @@ class NeulandAPIClient {
     }
   }
 
-  async getMensaPlan () {
-    return this.performRequest(`${ENDPOINT}/api/mensa`)
+  async getMensaPlan (lang) {
+    return this.performRequest(`${ENDPOINT}/api/mensa?lang=${lang}`)
   }
 
   async getReimannsPlan () {
