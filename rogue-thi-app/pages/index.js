@@ -175,6 +175,7 @@ export default function Home () {
   const [unlockedThemes, setUnlockedThemes] = useState([])
   const [showDebug, setShowDebug] = useState(false)
   const [theme, setTheme] = useContext(ThemeContext)
+
   const themeModalBody = useRef()
   const locales = useRouter().locales
 
@@ -299,7 +300,7 @@ export default function Home () {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  { locales.map((locale, i) => ( // remove current locale from list
+                  { locales.filter(item => item !== router.locale).map((locale, i) => ( // remove current locale from list
                     <Dropdown.Item key={ i } href={ locale }>{ locale }</Dropdown.Item>
                   )) }
                 </Dropdown.Menu>
