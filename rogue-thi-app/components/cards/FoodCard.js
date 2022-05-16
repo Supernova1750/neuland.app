@@ -52,7 +52,7 @@ export default function FoodCard () {
       }
     }
     load()
-  }, [t])
+  }, [router.locale, t])
 
   return (
     <BaseCard
