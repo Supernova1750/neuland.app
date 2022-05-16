@@ -4,6 +4,8 @@ import ReactPlaceholder from 'react-placeholder'
 import { faUtensils } from '@fortawesome/free-solid-svg-icons'
 
 import BaseCard from './BaseCard'
+import { useRouter } from 'next/router'
+
 import TranslateDangerous from '../TranslateDangerous'
 import { formatISODate } from '../../lib/date-utils'
 import { loadFoodEntries } from '../../lib/backend-utils/food-utils'
@@ -14,6 +16,8 @@ export default function FoodCard () {
   const [foodCardTitle, setFoodCardTitle] = useState('food')
   const [foodError, setFoodError] = useState(null)
   const { t } = useTranslation()
+
+  const router = useRouter()
 
   useEffect(() => {
     async function load () {
@@ -30,7 +34,7 @@ export default function FoodCard () {
 
       const today = formatISODate(new Date())
       try {
-        const entries = await loadFoodEntries(restaurants)
+        const entries = await loadFoodEntries(restaurants, router.locale)
         const todayEntries = entries.find(x => x.timestamp === today)?.meals
         if (!todayEntries) {
           setFoodEntries([])
