@@ -20,7 +20,7 @@ export default function TimetableCard () {
     async function load () {
       try {
         setTimetable(await getFriendlyTimetable(new Date(), false))
-        console.log(timetable)
+        // console.log(timetable)
       } catch (e) {
         if (e instanceof NoSessionError) {
           router.replace('/login')
