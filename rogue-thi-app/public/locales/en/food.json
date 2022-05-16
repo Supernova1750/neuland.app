@@ -3,18 +3,18 @@
     "options": {
         "allergens": {
             "title": "Select allergens",
-            "description": "Wähle die Allergene aus, bei denen du gesondert gewarnt werden möchtest. Deine Angaben werden nur lokal auf deinem Gerät gespeichert und nicht übermittelt. (Auch nicht an die THI.)"
+            "description": "Select the allergens, that you want to be warned about. Your selection will only be stored locally on your device and will not be sent to anyone. (Not even to the THI.)"
         }, 
         "mensa": {
-            "enable": "Mensa einblenden",
-            "disable": "Mensa ausblenden"
+            "enable": "Show Mensa",
+            "disable": "Hide Mensa"
         },
         "reimanns": {
-            "enable": "Reimanns einblenden",
-            "disable": "Reimanns ausblenden"
+            "enable": "Show Reimanns",
+            "disable": "Hide Reimanns"
         }
     },
     "entrylist": {
-        "empty": "Der Speiseplan ist leer."
+        "empty": "The meal plan is empty."
     }
 }
