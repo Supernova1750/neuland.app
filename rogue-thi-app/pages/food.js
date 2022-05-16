@@ -258,7 +258,7 @@ export default function Mensa () {
 
           <Modal.Body>
             <p>
-              {t('options.allergens.description', { ns: 'food' })} hello
+              {t('options.allergens.description', { ns: 'food' })}
             </p>
 
             <Form>
