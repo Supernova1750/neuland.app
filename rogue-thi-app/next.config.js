@@ -28,13 +28,12 @@ const permissionPolicyFeatures = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: true
 }
 
 const { i18n } = require('./next-i18next.config')
 
 const isDev = process.env.NODE_ENV === 'development'
-
 
 module.exports = {
   nextConfig,
