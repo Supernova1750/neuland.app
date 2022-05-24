@@ -16,5 +16,23 @@
     },
     "entrylist": {
         "empty": "The meal plan is empty."
+    },
+    "mealdetails" : {
+        "title": "Information",
+        "annotation":{
+            "title": "Annotations"
+        },
+        "allergens": {
+            "title": "Allergens"
+        },
+        "price": {
+            "title": "Prices",
+            "students": "Students",
+            "staff": "Staff members",
+            "guests": "Guests"
+        },
+        "emptylist": "None.",
+        "unknown": "Unknown.",
+        "disclaimer": "<strong>This information is supplied without liability.</strong> Please check the infoscreens for the information, before you consume anything."
     }
 }

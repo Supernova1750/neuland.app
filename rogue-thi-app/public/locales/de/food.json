@@ -16,5 +16,23 @@
     },
     "entrylist": {
         "empty": "Der Speiseplan ist leer."
+    },
+    "mealdetails" : {
+        "title": "Erläuterung",
+        "annotation":{
+            "title": "Anmerkungen"
+        },
+        "allergens": {
+            "title": "Allergene"
+        },
+        "price": {
+            "title": "Preise",
+            "students": "Studierende",
+            "staff": "Mitarbeitende",
+            "guests": "Gäste"
+        },
+        "emptylist": "Keine.",
+        "unknown": "Unbekannt.",
+        "disclaimer": "<strong>Angaben ohne Gewähr. </strong>Bitte prüfe die Angaben auf den Infobildschirmen, bevor du etwas konsumiert."
     }
 }
