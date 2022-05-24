@@ -24,17 +24,11 @@ import { useTranslation } from 'next-i18next'
 
 import styles from '../styles/Mensa.module.css'
 
-import allergenMap from '../data/allergens.json'
-import flagMap from '../data/mensa-flags.json'
+// import flagMap from '../data/mensa-flags.json'
 
 const CURRENCY_LOCALE = 'de'
 const COLOR_WARN = '#bb0000'
 const FALLBACK_ALLERGEN = 'Unbekannt (Das ist schlecht.)'
-
-// delete comments
-Object.keys(allergenMap)
-  .filter(key => key.startsWith('_'))
-  .forEach(key => delete allergenMap[key])
 
 export default function Mensa () {
   const router = useRouter()
@@ -47,7 +41,8 @@ export default function Mensa () {
   const [showAllergenSelection, setShowAllergenSelection] = useState(false)
   const [isStudent, setIsStudent] = useState(true)
 
-  const allergens = t('allergens', { ns: 'allergens', returnObjects: true })
+  const allergensMap = t('flags.allergens', { ns: 'food', returnObjects: true })
+  const flagMap = t('flags.mensa-flags', { ns: 'food', returnObjects: true })
 
   useEffect(() => {
     async function load () {
@@ -222,7 +217,7 @@ export default function Mensa () {
                   {' '}
                   <strong>{key}</strong>
                   {' – '}
-                  {allergens[key] || FALLBACK_ALLERGEN}
+                  {allergensMap[key] || FALLBACK_ALLERGEN}
                 </li>
               ))}
             </ul>
@@ -264,7 +259,7 @@ export default function Mensa () {
             </p>
 
             <Form>
-              {Object.entries(allergens).map(([key, value]) => (
+              {Object.entries(allergensMap).map(([key, value]) => (
                 <Form.Check
                   key={key}
                   id={'allergen-checkbox-' + key}
