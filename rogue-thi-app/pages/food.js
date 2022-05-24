@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Modal from 'react-bootstrap/Modal'
 import ReactPlaceholder from 'react-placeholder'
+import TranslateDangerous from '../components/TranslateDangerous'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
@@ -45,6 +46,8 @@ export default function Mensa () {
   const [allergenSelection, setAllergenSelection] = useState({})
   const [showAllergenSelection, setShowAllergenSelection] = useState(false)
   const [isStudent, setIsStudent] = useState(true)
+
+  const allergens = t('allergens', { ns: 'allergens', returnObjects: true })
 
   useEffect(() => {
     async function load () {
@@ -187,13 +190,13 @@ export default function Mensa () {
 
         <Modal show={showMealDetails} onHide={() => setShowMealDetails(null)}>
           <Modal.Header closeButton>
-            <Modal.Title>Erläuterung</Modal.Title>
+            <Modal.Title>{t('mealdetails.title', { ns: 'food' })}</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
-            <h5>Anmerkungen</h5>
-            {showMealDetails?.flags === null && 'Unbekannt.'}
-            {showMealDetails?.flags?.length === 0 && 'Keine.'}
+            <h5>{t('mealdetails.annotation.title', { ns: 'food' })}</h5>
+            {showMealDetails?.flags === null && t('mealdetails.unknown', { ns: 'food' })}
+            {showMealDetails?.flags?.length === 0 && t('mealdetails.emptylist', { ns: 'food' })}
             <ul>
               {showMealDetails?.flags?.map(flag => (
                 <li key={flag}>
@@ -204,9 +207,9 @@ export default function Mensa () {
               ))}
             </ul>
 
-            <h5>Allergene</h5>
-            {showMealDetails?.allergens === null && 'Unbekannt.'}
-            {showMealDetails?.allergens?.length === 0 && 'Keine.'}
+            <h5>{t('mealdetails.allergens.title', { ns: 'food' })}</h5>
+            {showMealDetails?.allergens === null && t('mealdetails.unknown', { ns: 'food' })}
+            {showMealDetails?.allergens?.length === 0 && t('mealdetails.emptylist', { ns: 'food' })}
             <ul>
               {showMealDetails?.allergens?.map(key => (
                 <li key={key} style={{ color: containsSelectedAllergen([key]) && COLOR_WARN }}>
@@ -219,30 +222,29 @@ export default function Mensa () {
                   {' '}
                   <strong>{key}</strong>
                   {' – '}
-                  {allergenMap[key] || FALLBACK_ALLERGEN}
+                  {allergens[key] || FALLBACK_ALLERGEN}
                 </li>
               ))}
             </ul>
 
-            <h5>Preise</h5>
+            <h5>{t('mealdetails.price.title', { ns: 'food' })}</h5>
             <ul>
               <li>
-                <strong>Studierende</strong>:{' '}
+                <strong>{t('mealdetails.price.students', { ns: 'food' })}</strong>:{' '}
                 {formatPrice(showMealDetails?.prices.student)}
               </li>
               <li>
-                <strong>Mitarbeitende</strong>:{' '}
+                <strong>{t('mealdetails.price.staff', { ns: 'food' })}</strong>:{' '}
                 {formatPrice(showMealDetails?.prices.employee)}
               </li>
               <li>
-                <strong>Gäste</strong>:{' '}
+                <strong>{t('mealdetails.price.guests', { ns: 'food' })}</strong>:{' '}
                 {formatPrice(showMealDetails?.prices.guest)}
               </li>
             </ul>
 
             <p>
-              <strong>Angaben ohne Gewähr. </strong>
-              Bitte prüfe die Angaben auf den Infobildschirmen, bevor du etwas konsumiert.
+             <TranslateDangerous i18nKey='mealdetails.disclaimer' namespace='food'/>
             </p>
           </Modal.Body>
 
@@ -262,7 +264,7 @@ export default function Mensa () {
             </p>
 
             <Form>
-              {Object.entries(t('allergens', { ns: 'allergens', returnObjects: true })).map(([key, value]) => (
+              {Object.entries(allergens).map(([key, value]) => (
                 <Form.Check
                   key={key}
                   id={'allergen-checkbox-' + key}
