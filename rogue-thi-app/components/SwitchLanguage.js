@@ -1,14 +1,12 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
-export default function SwitchLanguge () {
+export default function SwitchLanguge ({ lang }) {
   const router = useRouter()
-  return (<>
-        <Link href={router.pathname} locale="en" >
-          <a>English</a>
-        </Link>
-        <Link href={router.pathname} locale="de" >
-          <a>Deutsch</a>
-        </Link>
-    </>)
+  const { t } = useTranslation()
+
+  return (<Link href={router.pathname} locale={lang} >
+      { t('name', { ns: 'common', lng: lang })}
+    </Link>)
 }

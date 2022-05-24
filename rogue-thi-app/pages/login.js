@@ -51,7 +51,8 @@ export default function Login () {
   return (
     <AppContainer>
       <AppNavbar title="neuland.app" showBack={false} />
-      <SwitchLanguge/>
+      <SwitchLanguge lang='de'/>
+      <SwitchLanguge lang='en'/>
       <AppBody>
         <div className={styles.container}>
           <Form className={styles.main} onSubmit={e => attemptLogin(e)} autoComplete="on">
