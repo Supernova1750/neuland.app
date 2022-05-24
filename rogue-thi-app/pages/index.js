@@ -38,6 +38,7 @@ import MobilityCard from '../components/cards/MobilityCard'
 import TimetableCard from '../components/cards/TimetableCard'
 
 import TranslateDangerous from '../components/TranslateDangerous'
+import languages from '../data/languages.json'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
 
@@ -166,7 +167,7 @@ const ALL_DASHBOARD_CARDS = [
 
 export default function Home () {
   const router = useRouter()
-  const { t } = useTranslation()
+  const [t, i18n] = useTranslation()
 
   // page state
   const [shownDashboardEntries, setShownDashboardEntries] = useState([])
@@ -177,7 +178,6 @@ export default function Home () {
   const [theme, setTheme] = useContext(ThemeContext)
 
   const themeModalBody = useRef()
-  const locales = useRouter().locales
 
   useEffect(() => {
     async function load () {
@@ -300,8 +300,8 @@ export default function Home () {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  { locales.filter(item => item !== router.locale).map((locale, i) => ( // remove current locale from list
-                    <Dropdown.Item key={ i } href={ locale }>{ locale }</Dropdown.Item>
+                  { router.locales.filter(item => item !== i18n.resolvedLanguage).map((lang, i) => ( // remove current locale from list
+                    <Dropdown.Item key={ i } href={ lang }>{ languages[lang] }</Dropdown.Item>
                   )) }
                 </Dropdown.Menu>
               </Dropdown>
