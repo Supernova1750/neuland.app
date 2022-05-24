@@ -296,11 +296,11 @@ export default function Home () {
               <h3 className={styles.themeHeader}>{t('index.personalize.language.title')}</h3>
               <Dropdown>
                 <Dropdown.Toggle id="dropdown-basic">
-                  { t('name') }
+                  { languages[router.locale] }
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  { router.locales.filter(item => item !== i18n.resolvedLanguage).map((lang, i) => ( // remove current locale from list
+                  { router.locales.filter(item => item !== i18n.resolvedLanguage).map((lang, i) => (
                     <Dropdown.Item key={ i } href={ lang }>{ languages[lang] }</Dropdown.Item>
                   )) }
                 </Dropdown.Menu>
