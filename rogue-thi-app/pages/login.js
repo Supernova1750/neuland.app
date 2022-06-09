@@ -104,32 +104,14 @@ export default function Login () {
           </Form>
 
           <div className={styles.disclaimer}>
-<<<<<<< HEAD
             <h6>{ t('login.description.intro.title') }</h6>
             <p>
               <TranslateDangerous i18nKey="login.description.intro.body"/>
             </p>
-            <h6>{ t('login.description.developers.title') }</h6>
-            <p>
-              <TranslateDangerous i18nKey="login.description.developers.body"/>
-=======
-            <h6>Was ist das?</h6>
-            <p>
-              Das ist eine inoffizielle Alternative zur THI-App, welche eine verbesserte Benutzererfahrung bieten soll.
-              Sie wird bei von Studierenden bei <a href="https://neuland-ingolstadt.de" target="_blank" rel="noreferrer">Neuland Ingolstadt e.V.</a> für Studierende entwickelt und ist kein Angebot der Technischen Hochschule Ingolstadt.
->>>>>>> 6e120d8762f1ab81e6b01d412c0e77bf34d4eebc
-            </p>
+
             <h6>{ t('login.description.privacy.title')}</h6>
             <p>
-<<<<<<< HEAD
               <TranslateDangerous i18nKey="login.description.privacy.body"/>
-
-=======
-              <strong>Ja. </strong>
-              Deine Daten werden direkt auf deinem Gerät verschlüsselt, in verschlüsselter Form über unseren Proxy an die THI übermittelt
-              und erst dort wieder entschlüsselt.
-              Nur du und die THI haben Zugriff auf deine Zugangsdaten und deine persönlichen Daten.
->>>>>>> 6e120d8762f1ab81e6b01d412c0e77bf34d4eebc
             </p>
             <p>
               <a href={`${GIT_URL}/blob/master/docs/data-security-de.md`}>{ t('login.links.data-security') }</a>
