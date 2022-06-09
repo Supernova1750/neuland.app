@@ -13,7 +13,6 @@ import { useTranslation } from 'next-i18next'
 export default function BaseCard ({ link, icon, i18nKey, title, className, children }) {
   const { t } = useTranslation()
   return (
-    // eslint-disable-next-line @next/next/link-passhref
     <Link href={link}>
       <Card className={[styles.card, className]}>
         <Card.Body>

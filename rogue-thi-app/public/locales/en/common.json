@@ -8,13 +8,9 @@
         },
         "description": {
             "intro": {
-                "title": "What is this place?",
-                "body":"This App is an unoffical alternertive to the THI-App. It's created by and for Students and is <b>not</b> a official THI product."
-            },
-            "developers": {
-                "title":"Who created it?",
-                "body":"The App is being developed by Neuland Ingolstadt e.V., a student club for all people interested in computer science. You can find out more about it on our website <a href=\"https://neuland-ingolstadt.de\" target=\"_blank\" rel=\"noreferrer\">neuland-ingolstadt.de</a>."
-            },
+                "title": "What is this?",
+                "body":"This is an unofficial alternative to the THI-App, with improved user experience. It was created for students by the computer science club <a href='https://neuland-ingolstadt.de' target='_blank' rel='noreferrer'>Neuland Ingolstadt e.V.</a> and is not a service provided by the Technischen Hochschule Ingolstadt."
+            }, 
             "privacy": {
                 "title": "Is my data save?",
                 "body": "<b>Yes.</b> Your information is encrypted directly on your device and then send to the THI-Servers via our proxy. Only then is it decrypted. Only the University has access to your login data."
@@ -42,6 +38,7 @@
                 "barbie": "Barbie & Ken",
                 "retro": "Retro",
                 "95": "Windows 95",
+                "pride": "Pride",
                 "hacker": "Hackerman"
             },
             "dashboard": {

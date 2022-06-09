@@ -54,8 +54,8 @@ const ALL_THEMES = [
   { style: 'barbie' },
   { style: 'retro' },
   { style: '95' },
+  { style: 'pride' },
   { style: 'hacker', requiresToken: true }
-
 ]
 
 const PLATFORM_DESKTOP = 'desktop'

@@ -12,12 +12,8 @@
         },
         "description": {
             "intro": {
-                "title": "Wo bin ich hier?",
-                "body":"Dies ist eine inoffizielle Alternative zur THI-App. Sie wird von Studierenden für Studierende entwickelt und ist <b>kein</b> offizielles Angebot der THI."
-            },
-            "developers": {
-                "title":"Wer hat das entwickelt?",
-                "body":"Die App wird von Neuland Ingolstadt, dem studentischen Verein für alle Informatik-Begeisterten, entwickelt. Mehr Informationen findest du auf unserer Webseite unter <a href=\"https://neuland-ingolstadt.de\" target=\"_blank\" rel=\"noreferrer\">neuland-ingolstadt.de</a>."
+                "title": "Was ist das?",
+                "body":"Das ist eine inoffizielle Alternative zur THI-App, welche eine verbesserte Benutzererfahrung bieten soll. Sie wird bei von Studierenden bei <a href='https://neuland-ingolstadt.de' target='_blank' rel='noreferrer'>Neuland Ingolstadt e.V.</a> für Studierende entwickelt und ist kein Angebot der Technischen Hochschule Ingolstadt."
             },
             "privacy": {
                 "title": "Sind meine Daten sicher?",
@@ -46,6 +42,7 @@
                 "barbie": "Barbie & Ken",
                 "retro": "Retro",
                 "95": "Windows 95",
+                "pride": "Pride",
                 "hacker": "Hackerman"
             },
             "dashboard": {
